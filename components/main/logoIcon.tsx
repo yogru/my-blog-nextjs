@@ -29,14 +29,12 @@ function HomeIcon(props:{onClick?:()=>void}) {
 
 const useStyles = makeStyles((theme)=>({
     logoRoot:{
-        '& > svg': {
-            margin: theme.spacing(2),
-        },
-        color:'white',
-        fontSize:'2rem'
+        color: theme.palette.primary.main,
+        fontSize:'2rem',
+        marginTop:"0.3rem"
     },
     homeIconRoot:{
-        color:'black',
+        color: theme.palette.primary.main,
     }
 }))
 
