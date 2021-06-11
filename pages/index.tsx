@@ -1,19 +1,19 @@
-import Link from 'next/link'
-import MainHader from '../components/main/header'
 import Box from '@material-ui/core/Box'
+
+
+import Link from 'next/link'
+import MainHeader from '../components/main/header'
+import MainBody from '../components/main/body'
+
 
 function IndexPage(){
 
-
     return (
-        <Box flex flexDirection="column">
-            <MainHader/>
+        <Box display={"flex"} flexDirection="column">
+                <MainHeader/>
+                <MainBody />
         </Box>
-
-
-        )
-
-
+    )
 }
 
 
