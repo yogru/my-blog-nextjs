@@ -1,12 +1,9 @@
 import Box from '@material-ui/core/Box'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 
-import Card from '../card'
+import Card from '@/component/card/ImgMediaCard'
 
-interface Props {
-
-}
-
+interface Props {}
 
 function Body(props:Props){
     const classes = useStyles()

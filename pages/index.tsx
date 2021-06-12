@@ -1,9 +1,9 @@
 import Box from '@material-ui/core/Box'
-import MainHeader from '../components/main/header'
-import MainBody from '../components/main/body'
+import MainHeader from '@/container/main/header'
+import MainBody from '@/container/main/body'
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
-import MainBanner from "../components/main/banner";
+import MainBanner from "@/component/banner/banner";
 
 function IndexPage(){
    const classes = useStyles()

@@ -1,18 +1,14 @@
 import Box from '@material-ui/core/Box'
-
-import LogoIcon from './logoIcon'
-import GitHubIcon from './githubIcon'
-import ThemeIcon from './themeIcon';
-import SearchIcon from './searchIcon';
-import Profile from './profile'
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import theme from "../../styles/theme";
 import {createStyles} from "@material-ui/core/styles";
 
-interface Props{
+import LogoIcon from '@/component/icon/logoIcon'
+import GitHubIcon from '@/component/icon/githubIcon'
+import ThemeIcon from '@/component/icon/themeIcon'
+import SearchIcon from '@/component/icon/searchIcon'
+import Profile from '@/component/icon/profile'
 
-}
-
+export interface Props{}
 
 function MainHeader(props:Props) {
     const classes = useStyles()
