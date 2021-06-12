@@ -1,6 +1,8 @@
 import Box from '@material-ui/core/Box'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 
+import Card from '../card'
+
 interface Props {
 
 }
@@ -10,9 +12,17 @@ function Body(props:Props){
     const classes = useStyles()
 
     return (
-        <Box className={classes.bodyRoot} >
-           #
-        </Box>
+        <div className={classes.bodyRoot} >
+            <Box className={classes.bodyItem}>
+                <Card />
+            </Box>
+
+            <Box className={classes.bodyItem}>
+                <Card />
+            </Box>
+
+
+        </div>
     )
 }
 
@@ -20,8 +30,15 @@ const useStyles = makeStyles((theme)=>({
     bodyRoot:{
         color:theme.palette.primary.main,
         display: 'flex',
-        minHeight: 'calc(100vh - 4rem)',
+        flexWrap:"wrap",
+        padding:"1rem",
+
         backgroundColor:theme.palette.background.default
+    },
+    bodyItem:{
+        margin:"1rem",
+        maxWidth:"24rem",
+        maxHeight:"20rem"
     }
 }))
 
