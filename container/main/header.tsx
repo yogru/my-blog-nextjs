@@ -7,6 +7,7 @@ import GitHubIcon from '@/component/icon/githubIcon'
 import ThemeIcon from '@/component/icon/themeIcon'
 import SearchIcon from '@/component/icon/searchIcon'
 import Profile from '@/component/icon/profile'
+import WriteIcon from '@/component/icon/writeIcon'
 
 export interface Props{}
 
@@ -22,6 +23,10 @@ function MainHeader(props:Props) {
 
             <Box ml={"auto"}>
                 <SearchIcon />
+            </Box>
+
+            <Box>
+                <WriteIcon />
             </Box>
 
             <Box>

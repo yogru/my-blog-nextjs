@@ -18,8 +18,8 @@ function IndexPage(){
                 <MainBanner />
             </Box>
 
-            <Box>
-                <MainBody />
+            <Box >
+                <MainBody  />
             </Box>
         </div>
     )
@@ -31,8 +31,10 @@ const useStyles = makeStyles((theme)=>createStyles({
         display:"flex",
         flexDirection:"column",
         minWidth:"100vw",
-        minHeight:"100vh"
-    }
+        minHeight:"100vh",
+        backgroundColor:theme.palette.background.section
+    },
+
 }))
 
 

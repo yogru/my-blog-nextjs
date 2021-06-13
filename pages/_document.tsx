@@ -8,8 +8,18 @@ export default class MyDocument extends Document {
         return (
             <Html lang="en">
                 <Head>
+                    {/* quill 관련 리소스 시작*/}
+                    <link href="//cdn.jsdelivr.net/npm/katex@0.13.3/dist/katex.min.css" rel="stylesheet"/>
+                    <script src="//cdn.jsdelivr.net/npm/katex@0.13.3/dist/katex.min.js"></script>
+                    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/highlight.min.js"></script>
+                    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+                    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/styles/default.min.css"/>
+                    <link rel="stylesheet" href="//cdn.quilljs.com/1.3.6/quill.snow.css"/>
+                    {/* quill 관련 리소스 종료*/}
+
                     {/* PWA primary color */}
                     <meta name="theme-color" content={theme.palette.primary.main} />
+
                     <link
                         rel="stylesheet"
                         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"

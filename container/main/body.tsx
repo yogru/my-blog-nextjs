@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme)=>({
         flexWrap:"wrap",
         padding:"1rem",
 
-        backgroundColor:theme.palette.background.default
+        backgroundColor:theme.palette.background.section
     },
     bodyItem:{
         margin:"1rem",
