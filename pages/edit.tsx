@@ -1,5 +1,4 @@
 import Box from '@material-ui/core/Box'
-
 import Quill from '@/component/editor/quill'
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import theme from "@/styles/theme";

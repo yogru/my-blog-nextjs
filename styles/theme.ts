@@ -7,7 +7,6 @@ import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 
 // PaletteOptions 확장, theme.palette 내부를 확장할 때
 declare module '@material-ui/core/styles/createPalette' {
-
     interface TypeBackground {
         // Overrides Mui Types
         section?: string
@@ -31,7 +30,6 @@ const theme = createMuiTheme({
         background: {
             default: 'rgb(255,255,255)',
             section: 'rgb(240,240,240)'
- 
         },
     },
 });

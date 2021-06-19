@@ -9,10 +9,8 @@ export interface Props {
 
 function TagChips(props:Props){
 
-
     return (
         <Box>
-
         </Box>
     )
 }
