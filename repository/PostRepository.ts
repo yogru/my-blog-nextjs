@@ -5,11 +5,13 @@ import PostModel from "@/model/PostModel";
 
 export interface PostRepository {
     createPost:(postModel:PostModel)=>Promise<boolean>
+    test: ()=>Promise<any>
+
 }
 
 class PostRepositoryImp implements PostRepository{
 
-   public  baseUrl = "/post"
+   public  baseUrl = "http://127.0.0.1:8080/post"
 
    public async createPost(postModel: PostModel): Promise<boolean> {
         try {
@@ -21,6 +23,16 @@ class PostRepositoryImp implements PostRepository{
         }
     }
 
+    public async test(): Promise<any> {
+        try {
+            const res =  await fetch(this.baseUrl,{method:"GET"})
+            const ret = await res.json();
+            return "sss";
+        }catch (e) {
+            console.log("hi...??",e)
+          return null;
+        }
+    }
 }
 
 const ret:PostRepository = new PostRepositoryImp()

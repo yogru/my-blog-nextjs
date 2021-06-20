@@ -1,16 +1,17 @@
 import Box from '@material-ui/core/Box'
-import Quill from '@/component/editor/quill'
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import theme from "@/styles/theme";
 import {createStyles} from "@material-ui/core/styles";
+
+import EditPost from '@/container/post/edit'
+
 
 export interface Props {}
 
-function EditPost(props:Props){
+function EditPostPage(props:Props){
     const classes = useStyles()
     return (
         <Box className={classes.root}>
-            <Quill />
+           <EditPost />
         </Box>
     )
 }
@@ -21,4 +22,4 @@ const useStyles = makeStyles((theme=>createStyles({
     }
 })))
 
-export default EditPost
+export default EditPostPage
