@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -17,29 +17,39 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import CheckIcon from '@material-ui/icons/Check';
+import CallMissedIcon from '@material-ui/icons/CallMissed';
 
 
 export interface Props {
-
-
+    onClickSave?: ()=> void
+    onClickBack?:()=>void
 }
 
 
 function EditorBar(props:Props){
     const classes = useStyles()
+    const onClickSave = useCallback(()=>{
+        props.onClickSave?.()
+    },[props.onClickSave])
+
+    const onClickBack = useCallback(()=>{
+        props.onClickBack?.()
+    },[props.onClickBack])
+
 
     return (
         <AppBar position="fixed" color="primary" className={classes.appBar}>
             <Toolbar>
-                <IconButton edge="start" color="inherit" aria-label="open drawer">
-                    <MenuIcon />
+                <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={onClickBack}>
+                    <CallMissedIcon />
                 </IconButton>
                 <div className={classes.grow} />
-                <IconButton color="inherit">
-                    <SearchIcon />
-                </IconButton>
-                <IconButton edge="end" color="inherit">
-                    <MoreIcon />
+                {/*<IconButton color="inherit">*/}
+                {/*    <SearchIcon />*/}
+                {/*</IconButton>*/}
+                <IconButton edge="end" color="inherit" onClick={onClickSave}>
+                    <CheckIcon />
                 </IconButton>
             </Toolbar>
         </AppBar>

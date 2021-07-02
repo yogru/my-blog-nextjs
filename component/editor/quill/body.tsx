@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import Box from '@material-ui/core/Box'
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
 
 
 export interface Props {
-
+ onChangeBodyText?:(text:string)=>void
 }
 
 function Quill(props:Props) {
@@ -13,13 +13,15 @@ function Quill(props:Props) {
     const classes = useStyles()
     const ReactQuill = typeof window === 'object' ? require("react-quill") : () => false;
 
-    function handleEditor(value: string) {
+    const onChange = useCallback((value:string)=>{
         setText(value)
-    }
+        props.onChangeBodyText?.(value)
+    },[])
+
 
     return (
         <Box className={classes.root}>
-            <ReactQuill value={text} onChange={handleEditor} />
+            <ReactQuill value={text} onChange={onChange} />
         </Box>
     )
 }

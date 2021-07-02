@@ -1,4 +1,4 @@
-import React, {ComponentElement} from 'react';
+import  {useEffect} from 'react';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,7 +15,7 @@ interface Props {
 export default function MyApp(props:Props) {
   const { Component, pageProps } = props;
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
@@ -24,7 +24,7 @@ export default function MyApp(props:Props) {
   }, []);
 
   return (
-      <React.Fragment>
+      <>
         <Head>
           <title>Blog</title>
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
@@ -34,6 +34,6 @@ export default function MyApp(props:Props) {
           <CssBaseline />
           <Component {...pageProps} />
         </ThemeProvider>
-      </React.Fragment>
+      </>
   );
 }
