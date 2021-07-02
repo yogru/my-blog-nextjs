@@ -5,8 +5,9 @@ import {createStyles} from "@material-ui/core/styles";
 import {observer} from 'mobx-react'
 
 import Quill from '@/component/editor/quill'
-import PostStore from "@/mobx-store/PostStore";
-import PostRepository from "@/repository/PostRepository";
+import {useRootStore} from "@/mobx-store/RootStore";
+// import PostStore from "@/mobx-store/PostStore";
+// import PostRepository from "@/repository/PostRepository";
 
 export interface Props {}
 
@@ -14,16 +15,18 @@ const OQuill = observer(Quill)
 
 function EditPost(props:Props){
     const classes = useStyles()
+    const postStore = useRootStore().getPostStore()
+
     const onSave = useCallback( async (title:string, body:string)=>{
-            await PostStore.submit(title,body)
+            await postStore.submit(title,body)
     },[])
 
 
 
 
-    useEffect(()=>{
-        PostRepository.test().catch(e=>console.log(e))
-    },[])
+    // useEffect(()=>{
+    //     PostRepository.test().catch(e=>console.log(e))
+    // },[])
 
     return (
         <Box className={classes.root}>

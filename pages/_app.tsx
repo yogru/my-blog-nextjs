@@ -2,9 +2,12 @@ import  {useEffect} from 'react';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import {Provider} from 'mobx-react'
 import "@/styles/quill.css"
 
+
 import theme from '../styles/theme';
+import RootStoreImp , {RootStore} from "@/mobx-store/RootStore";
 
 interface Props {
     pageProps : any
@@ -32,7 +35,9 @@ export default function MyApp(props:Props) {
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <Component {...pageProps} />
+            <Provider rootStore={new RootStoreImp()}>
+                <Component {...pageProps} />
+            </Provider>
         </ThemeProvider>
       </>
   );
