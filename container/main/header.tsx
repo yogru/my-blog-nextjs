@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import Box from '@material-ui/core/Box'
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
@@ -8,10 +9,12 @@ import ThemeIcon from '@/component/icon/themeIcon'
 import SearchIcon from '@/component/icon/searchIcon'
 import Profile from '@/component/icon/profile'
 import WriteIcon from '@/component/icon/writeIcon'
+import LoginContainer from "@/container/login";
 
 export interface Props{}
 
 function MainHeader(props:Props) {
+    const [openLoginDialog,setOpenLoginDialog] = useState<boolean>()
     const classes = useStyles()
 
     return (
@@ -41,6 +44,7 @@ function MainHeader(props:Props) {
                 <Profile />
             </Box>
 
+            <LoginContainer open={openLoginDialog}/>
         </div>
     )
 }

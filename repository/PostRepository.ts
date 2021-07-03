@@ -1,7 +1,5 @@
-import fetch from 'isomorphic-unfetch'
-
 import PostModel from "@/model/PostModel";
-
+import fetch from '@/modules/Fetcher'
 
 export interface PostRepository {
     createPost:(postModel:PostModel)=>Promise<boolean>
@@ -13,26 +11,16 @@ class PostRepositoryImp implements PostRepository{
 
    public async createPost(postModel: PostModel): Promise<boolean> {
         try {
-            const res =  await fetch(this.baseUrl,{ method:"POST" })
+            console.log(postModel)
+            const res =  await fetch.post(this.baseUrl,postModel)
+            console.log(res)
             return true
         }
         catch(e) {
             return false
         }
-       // console.log("post repository...", postModel)
        return true
     }
-
-    // public async test(): Promise<any> {
-    //     try {
-    //         const res =  await fetch(this.baseUrl,{method:"GET"})
-    //         const ret = await res.json();
-    //         return "sss";
-    //     }catch (e) {
-    //         console.log("hi...??",e)
-    //       return null;
-    //     }
-    // }
 }
 
 const ret:PostRepository = new PostRepositoryImp()
