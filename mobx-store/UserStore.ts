@@ -1,49 +1,71 @@
-import { makeAutoObservable } from "mobx"
+import { makeAutoObservable , toJS} from "mobx"
+
 
 import UserRepository, {LoginRequest} from "@/repository/UserRepository";
 import UserModel from "@/model/UserModel";
 import Fetcher from '@/modules/Fetcher'
 import JWT from "@/modules/JWT";
+import LocalStorageImp, {Localstorage} from "@/modules/Localstorage";
 
 
 export interface UserStore {
 
-    /**
-     *  현재 로그인한 사용자의 아이디 가져온다.
-     */
-    getCurrentUserId():number | null
 
     attemptLogin(loginRequest:LoginRequest):Promise<void>
 
     attemptLogout():void
 
+    loadLocalStorage():void
+
+    isLoginUser():boolean
+
+    getUser():UserModel
 }
 
 export default class UserStoreImp implements UserStore{
 
     private user:UserModel | null;
+    private lcs:Localstorage
 
     constructor() {
+        this.lcs = new LocalStorageImp("auth_jwt_key")
+       // const jwt = new JWT(this.lcs.get())
         this.user = null
+        // UserModel.createByJwtToken(jwt)
         makeAutoObservable(this)
     }
 
-    public getCurrentUserId(): number {
-        // "stub"
-        return 1
+    public loadLocalStorage(){
+        const jwt = new JWT(this.lcs.get())
+        const user= UserModel.createByJwtToken(jwt)
+        if(user){
+            Fetcher.setJwt(jwt)
+            this.user = user
+        }
     }
+
+    public getUser():UserModel{
+        return toJS(this.user)
+    }
+
 
     public async attemptLogin(loginRequest: LoginRequest): Promise<void> {
         const res = await UserRepository.login(loginRequest)
-        this.user = UserModel.createByLoginResponse(res)
-        console.log(this.user," 로그인 유저 ", res)
+        const jwt = new JWT(res.token)
+        this.user = UserModel.createByJwtToken(jwt)
+        this.lcs.set(res.token)
         // 이 부분이 좀 많이 구리다...
-        Fetcher.setJwt(new JWT(res.token))
+        Fetcher.setJwt(jwt)
     }
 
     public attemptLogout(): void {
         this.user = null
+        this.lcs.clear()
         Fetcher.setJwt(null)
+    }
+
+    public isLoginUser(): boolean {
+        return this.user === null ? false : true;
     }
 
 }

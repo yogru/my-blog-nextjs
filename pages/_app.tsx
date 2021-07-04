@@ -14,6 +14,9 @@ interface Props {
     Component : any
 }
 
+const rootStore = new RootStoreImp()
+
+
 
 export default function MyApp(props:Props) {
   const { Component, pageProps } = props;
@@ -26,6 +29,7 @@ export default function MyApp(props:Props) {
     }
   }, []);
 
+
   return (
       <>
         <Head>
@@ -35,7 +39,7 @@ export default function MyApp(props:Props) {
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-            <Provider rootStore={new RootStoreImp()}>
+            <Provider rootStore={rootStore}>
                 <Component {...pageProps} />
             </Provider>
         </ThemeProvider>

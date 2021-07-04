@@ -18,9 +18,9 @@ export class PostStoreImp  implements PostStore{
         this.userStore = userStore
     }
 
-
     public async submit(title:string, body:string){
-        const postModel =  PostModel.createByView(title,body,[],[1])
+        const userModel =  this.userStore.getUser()
+        const postModel =  PostModel.createByView(title,body,[],[userModel.id])
         return  PostRepository.createPost(postModel)
     }
 

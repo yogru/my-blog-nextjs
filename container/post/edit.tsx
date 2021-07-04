@@ -1,8 +1,9 @@
-import {useEffect, useCallback} from "react";
+import {useEffect, useCallback, useState} from "react";
 import Box from '@material-ui/core/Box'
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
 import {observer} from 'mobx-react'
+import { useRouter } from 'next/router'
 
 import Quill from '@/component/editor/quill'
 import {useRootStore} from "@/mobx-store/RootStore";
@@ -15,23 +16,39 @@ const OQuill = observer(Quill)
 
 function EditPost(props:Props){
     const classes = useStyles()
-    const postStore = useRootStore().getPostStore()
+    const router = useRouter()
+    const rootStore = useRootStore()
+    const postStore = rootStore.getPostStore()
+    const userStore =  rootStore.getUserStore()
+    const [loading,setLoading] = useState<boolean>(true)
+
+    useEffect(()=>{
+        // useLogin 승격할 필요가 있다..
+        userStore.loadLocalStorage()
+        if(!userStore.isLoginUser()){
+            router.push('/')
+        }else{
+            setLoading(false)
+        }
+    },[])
 
     const onSave = useCallback( async (title:string, body:string)=>{
             await postStore.submit(title,body)
     },[])
 
-
-
-
-    // useEffect(()=>{
-    //     PostRepository.test().catch(e=>console.log(e))
-    // },[])
+    const onBack = useCallback(()=>{
+        router.back()
+    },[])
 
     return (
-        <Box className={classes.root}>
-            <OQuill onSave={onSave} />
-        </Box>
+        <>
+            {
+                loading ? <p> loading...</p> :
+                    <Box className={classes.root}>
+                        <OQuill onSave={onSave} onBack={onBack} />
+                    </Box>
+            }
+        </>
     )
 }
 
@@ -41,4 +58,4 @@ const useStyles = makeStyles((theme=>createStyles({
     }
 })))
 
-export default EditPost
+export default observer(EditPost)

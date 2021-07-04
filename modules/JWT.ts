@@ -1,3 +1,6 @@
+import jwtDecode from 'jwt-decode'
+import UserModel from "@/model/UserModel";
+
 
 export default class JWT {
     private readonly tokenString:string
@@ -15,5 +18,9 @@ export default class JWT {
         return this.headerFieldName
     }
 
+    public getDecode():any{
+        if(!this.tokenString) return null
+        return jwtDecode(this.tokenString)
+    }
 }
 

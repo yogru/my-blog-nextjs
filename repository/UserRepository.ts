@@ -2,7 +2,6 @@ import fetcher from '@/modules/Fetcher'
 
 
 export class LoginResponse {
-    public email:string
     public token:string
 }
 
