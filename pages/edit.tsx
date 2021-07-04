@@ -2,8 +2,7 @@ import Box from '@material-ui/core/Box'
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
 
-import EditPost from '@/container/post/edit'
-
+import EditPost from '@/container/post-edit'
 
 export interface Props {}
 
