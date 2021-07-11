@@ -1,5 +1,4 @@
 export default class PostModel {
-
     public id: number | null
     public editors: number []
     public title: string

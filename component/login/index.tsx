@@ -9,7 +9,7 @@ import LoginFooter from './footer'
 
 export interface Props {
     open?:boolean
-    onLogin?:(id:string, password:string)=>Promise<void>
+    onLogin?:(id:string, password:string)=>Promise<boolean>
     onClose?:()=>void
 }
 
@@ -28,8 +28,8 @@ function LoginComponent(props:Props){
     },[])
 
     const onClickLoginBtn = useCallback(async ()=>{
-       await props.onLogin?.(id,password)
-        // props.onClose?.()
+      const success = await props.onLogin?.(id,password)
+        success && props.onClose?.()
     },[id,password])
 
     const onClickCloseBtn = useCallback(()=>{

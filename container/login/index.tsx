@@ -3,9 +3,6 @@ import {observer} from "mobx-react";
 import {useRootStore} from "@/mobx-store/RootStore";
 import {useCallback, useEffect, useState} from "react";
 
-// 삭제해야함... 테스트용..
-import Fetcher from "@/modules/Fetcher";
-
 const OLoginComponent = observer(LoginComponent)
 
 export interface Props {

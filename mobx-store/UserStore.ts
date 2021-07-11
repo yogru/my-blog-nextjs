@@ -11,7 +11,7 @@ import LocalStorageImp, {Localstorage} from "@/modules/Localstorage";
 export interface UserStore {
 
 
-    attemptLogin(loginRequest:LoginRequest):Promise<void>
+    attemptLogin(loginRequest:LoginRequest):Promise<boolean>
 
     attemptLogout():void
 
@@ -49,13 +49,14 @@ export default class UserStoreImp implements UserStore{
     }
 
 
-    public async attemptLogin(loginRequest: LoginRequest): Promise<void> {
+    public async attemptLogin(loginRequest: LoginRequest): Promise<boolean> {
         const res = await UserRepository.login(loginRequest)
         const jwt = new JWT(res.token)
         this.user = UserModel.createByJwtToken(jwt)
         this.lcs.set(res.token)
         // 이 부분이 좀 많이 구리다...
         Fetcher.setJwt(jwt)
+        return true
     }
 
     public attemptLogout(): void {

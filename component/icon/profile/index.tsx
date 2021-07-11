@@ -7,12 +7,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import Avatar from './avatar'
 
-const MainMenuOptionArray = ["MyBlog" , "Setting" , "Logout"]
-export type MainMenuOption = typeof MainMenuOptionArray[number]
+const ProfileIconMenuArray = ["MyBlog" , "Setting" , "Logout"]
+export type ProfileIconMenuOption = typeof ProfileIconMenuArray[number]
 
 
 export interface Props {
-    onChange?:(MainMenuOption)=>void
+    onChange?:(ProfileIconMenuOption)=>void
 }
 
 const OPTION_LENGTH = "3rem"
@@ -32,7 +32,7 @@ function MenuComponent(props:Props){
     };
 
 
-    function handleChange(opt:MainMenuOption){
+    function handleChange(opt:ProfileIconMenuOption){
         opt && props.onChange?.(opt);
         handleClose()
     }
@@ -51,13 +51,13 @@ function MenuComponent(props:Props){
                     PaperProps={{
                         style: {
                             marginTop:"2rem",
-                            maxHeight: `calc( ${OPTION_LENGTH} * ${MainMenuOptionArray.length}) `,
+                            maxHeight: `calc( ${OPTION_LENGTH} * ${ProfileIconMenuArray.length}) `,
                             width: '15ch',
                         },
                     }}
                 >
                     {
-                        MainMenuOptionArray.map((option)=>
+                        ProfileIconMenuArray.map((option)=>
                             <MenuItem key={option}  onClick={()=>handleChange(option)}>
                                 {option}
                             </MenuItem>

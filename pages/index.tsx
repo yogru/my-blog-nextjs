@@ -1,25 +1,31 @@
 import Box from '@material-ui/core/Box'
-import MainHeader from '@/container/main/header'
-import MainBody from '@/container/main/body'
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
-import MainBanner from "@/component/banner/banner";
+import {useEffect} from "react";
+
+import BlogHeaderMenuContainer from '@/container/blog-header-menu'
+import HomeBody from '@/container/home-body'
+import BlogImageBanner from "@/component/banner/banner";
+import {useRootStore} from "@/mobx-store/RootStore";
+import useLocalLogin from "@/hooks/useLogin";
+
 
 function IndexPage(){
-   const classes = useStyles()
-
+    const classes = useStyles()
+    const isLocalLogin = useLocalLogin() // 되는지 확인 안함..ㅋㅋ
+    console.log(isLocalLogin)
     return (
         <div className={classes.root} >
             <Box>
-                <MainHeader/>
+                <BlogHeaderMenuContainer/>
             </Box>
 
             <Box>
-                <MainBanner />
+                <BlogImageBanner />
             </Box>
 
             <Box >
-                <MainBody  />
+                <HomeBody  />
             </Box>
         </div>
     )
@@ -34,7 +40,6 @@ const useStyles = makeStyles((theme)=>createStyles({
         minHeight:"100vh",
         backgroundColor:theme.palette.background.section
     },
-
 }))
 
 

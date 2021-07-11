@@ -6,7 +6,7 @@ import Brightness7Icon from '@material-ui/icons/Brightness7';
 import IconButton from "@material-ui/core/IconButton";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
-type ThemeType = "light" | "dark"
+export type ThemeType = "light" | "dark"
 
 interface Props {
     onChange?:(themeType:ThemeType)=>void

@@ -17,8 +17,6 @@ function Body(props:Props){
             <Box className={classes.bodyItem}>
                 <Card />
             </Box>
-
-
         </div>
     )
 }
@@ -38,7 +36,6 @@ const useStyles = makeStyles((theme)=>({
         maxHeight:"20rem"
     }
 }))
-
 
 
 export default Body
