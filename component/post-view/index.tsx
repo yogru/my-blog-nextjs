@@ -3,22 +3,50 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
 
 import BlogMenu from "@/component/blog-header-menu";
+import MainHeaderSide from "./main-header-side"
+import MainSide from "./main-side"
+
+export type LayoutConst= {
+    MainHeaderSideHeight:string
+}
+
 
 export interface Props {
 
 }
 
+const layoutConst:LayoutConst ={
+    MainHeaderSideHeight:"12rem"
+}
+
 
 function PostView(props:Props){
-    const classes = useStyles()
+    const classes = useStyles(layoutConst)
 
     return (
         <Box className={classes.root}>
 
-            <BlogMenu  className={classes.menu} />
+            <Box className={classes.menuContainer}>
+                <BlogMenu  className={classes.menu} position="fixed" />
+            </Box>
 
             <Box className={classes.body} >
-                Body.
+                <Box className={classes.bodyColumnOne}>
+                    <MainHeaderSide />
+                </Box>
+
+                <Box className={classes.bodyColumnTwo}>
+                    <Box className={classes.leftContainer}>
+                        Left..
+                    </Box>
+                    <Box className={classes.mainContainer}>
+                      <MainSide layoutConst={layoutConst} />
+                    </Box>
+                    <Box className={classes.rightContainer}>
+                        right
+                    </Box>
+                </Box>
+
             </Box>
         </Box>
 
@@ -29,14 +57,41 @@ const useStyles = makeStyles(theme => createStyles({
     root:{
         display:"flex",
         flexDirection:"column",
-        backgroundColor:"black"
+        backgroundColor:theme.palette.background.section
     },
     menu:{
-        backgroundColor: "gray",
+        borderBottom:"1px solid rgb(248,249,250)",
+        backgroundColor:theme.palette.background.menu
+    },
+    menuContainer:{
+        marginBottom:theme.size.blogHeaderMenuHeight,
     },
     body:{
-        minHeight: "calc(200vh - 0rem)"
+        display: 'flex',
+        flexDirection: "column",
+        minHeight: `calc(100vh - ${theme.size.blogHeaderMenuHeight})`
     },
+    bodyColumnOne:(l:LayoutConst)=>({
+        minHeight: l.MainHeaderSideHeight,
+        maxHeight: l.MainHeaderSideHeight,
+        backgroundColor:"rgb(200,200,200)"
+    }),
+    bodyColumnTwo: {
+        display: "flex"
+    },
+    leftContainer:{
+       backgroundColor:"rgb(170,170,170)",
+       width:"10%"
+    },
+    mainContainer:{
+        backgroundColor:"rgb(130,130,130)",
+        width:"80%",
+    },
+    rightContainer:{
+        backgroundColor:"rgb(170,170,170)",
+        width:"10%"
+    }
+
 }))
 
 

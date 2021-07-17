@@ -107,8 +107,8 @@ function BlogHeaderMenu(props:Props){
 const useStyles = makeStyles(theme => ({
     root: (props:Props) => ({
          display:'flex',
-         minHeight:"4rem",
-         maxHeight:"3rem",
+         minHeight:theme.size.blogHeaderMenuHeight,
+         maxHeight:theme.size.blogHeaderMenuHeight,
          minWidth:"100vw",
          maxWidth:"100vw",
          position:props.position
