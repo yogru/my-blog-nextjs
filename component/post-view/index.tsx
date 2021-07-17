@@ -13,7 +13,7 @@ export type LayoutConst= {
 
 
 export interface Props {
-    post?: PostModel
+    post: PostModel
 }
 
 const layoutConst:LayoutConst ={
@@ -33,7 +33,7 @@ function PostView(props:Props){
 
             <Box className={classes.body} >
                 <Box className={classes.bodyColumnOne}>
-                    <MainHeaderSide />
+                    <MainHeaderSide post={props.post} />
                 </Box>
 
                 <Box className={classes.bodyColumnTwo}>
@@ -75,7 +75,8 @@ const useStyles = makeStyles(theme => createStyles({
     bodyColumnOne:(l:LayoutConst)=>({
         minHeight: l.MainHeaderSideHeight,
         maxHeight: l.MainHeaderSideHeight,
-        backgroundColor:"rgb(200,200,200)"
+        borderTop:`1px solid ${theme.borderColor.section}`,
+        borderBottom:`1px solid ${theme.borderColor.section}`,
     }),
     bodyColumnTwo: {
         display: "flex"

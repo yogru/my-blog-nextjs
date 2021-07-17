@@ -2,9 +2,7 @@ import Box from "@material-ui/core/Box"
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
 
-
 import TocSection from './toc-section'
-import ReplySection from './reply-section'
 import ContentsSection from "./contents-section";
 import FooterSection from "./footer-section";
 import {LayoutConst} from "@/component/post-view";
@@ -26,15 +24,11 @@ function MainSide(props:Props){
             </Box>
 
             <Box>
-                <ContentsSection contents={props.post?.body} />
+                <ContentsSection contents={props.post.body} />
             </Box>
 
             <Box mt="auto">
                 <FooterSection />
-            </Box>
-
-            <Box >
-                <ReplySection />
             </Box>
 
         </Box>

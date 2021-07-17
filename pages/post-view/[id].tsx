@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async (
     let post = {
         id: Number(id),
         title:"테스트 객체",
-        body:"zzz",
+        body:"<pre>강조인가 이거??</pre>",
         editors:[1,2,3],
         tag:["tag1","tag2","tag3"],
     }

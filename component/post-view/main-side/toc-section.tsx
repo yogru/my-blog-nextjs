@@ -11,7 +11,7 @@ function TocSection(){
     const classes = useStyles()
     return (
         <Box className={classes.root}>
-            연재 목록 보여주는 영역. 개발 아직 안함..
+            TOC 좀 빡세다..
         </Box>
     )
 }
