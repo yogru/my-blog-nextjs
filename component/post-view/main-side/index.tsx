@@ -8,8 +8,10 @@ import ReplySection from './reply-section'
 import ContentsSection from "./contents-section";
 import FooterSection from "./footer-section";
 import {LayoutConst} from "@/component/post-view";
+import PostModel from "@/model/PostModel";
 
 export interface Props {
+    post:PostModel
     layoutConst:LayoutConst
 }
 
@@ -24,7 +26,7 @@ function MainSide(props:Props){
             </Box>
 
             <Box>
-                <ContentsSection />
+                <ContentsSection contents={props.post?.body} />
             </Box>
 
             <Box mt="auto">

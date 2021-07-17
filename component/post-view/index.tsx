@@ -5,6 +5,7 @@ import {createStyles} from "@material-ui/core/styles";
 import BlogMenu from "@/component/blog-header-menu";
 import MainHeaderSide from "./main-header-side"
 import MainSide from "./main-side"
+import PostModel from "@/model/PostModel";
 
 export type LayoutConst= {
     MainHeaderSideHeight:string
@@ -12,7 +13,7 @@ export type LayoutConst= {
 
 
 export interface Props {
-
+    post?: PostModel
 }
 
 const layoutConst:LayoutConst ={
@@ -40,7 +41,7 @@ function PostView(props:Props){
                         Left..
                     </Box>
                     <Box className={classes.mainContainer}>
-                      <MainSide layoutConst={layoutConst} />
+                      <MainSide post={props.post} layoutConst={layoutConst} />
                     </Box>
                     <Box className={classes.rightContainer}>
                         right

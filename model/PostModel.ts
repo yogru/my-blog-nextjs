@@ -1,11 +1,11 @@
 export default class PostModel {
-    public id: number | null
+    public id?: number
     public editors: number []
     public title: string
     public body: string
     public tag: string []
-    public createAt: Date | null
-    public updateAt: Date | null
+    public createAt?: Date
+    public updateAt?: Date
 
     static createByView(title:string, body:string,tag?:string [], editors?: number []):PostModel{
         /**
