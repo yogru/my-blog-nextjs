@@ -3,6 +3,7 @@ import fetch from '@/modules/Fetcher'
 
 export interface PostRepository {
     createPost:(postModel:PostModel)=>Promise<boolean>
+    findById:(id:number)=>Promise<PostModel | null>
 }
 
 class PostRepositoryImp implements PostRepository{
@@ -20,7 +21,17 @@ class PostRepositoryImp implements PostRepository{
             return false
         }
        return true
+   }
+
+    public async findById(id: number): Promise<PostModel | null> {
+       if(!Number.isInteger(id))return null
+        try {
+          const post = await fetch.get(this.baseUrl ,{id})
+        }catch (e){
+           return null
+        }
     }
+
 }
 
 const ret:PostRepository = new PostRepositoryImp()

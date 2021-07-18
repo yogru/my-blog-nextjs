@@ -1,26 +1,33 @@
 import jwtDecode from 'jwt-decode'
 import UserModel from "@/model/UserModel";
-
+import LocalStorageImp ,{Localstorage} from "@/modules/Localstorage";
 
 export default class JWT {
-    private readonly tokenString:string
-    private readonly headerFieldName:string = "X-AUTH-TOKEN"
+    public static readonly headerFieldName:string = "X-AUTH-TOKEN"
+    private static readonly localStorage:Localstorage = new LocalStorageImp(JWT.headerFieldName)
 
-    constructor(tokenString:string) {
-      this.tokenString = tokenString
+    public static getTokenString():string {
+        return this.localStorage.get()
     }
 
-    public getTokenString():string {
-        return this.tokenString;
+    public static isValidToken():boolean {
+       const decode = JWT.getDecode()
+        if(decode)return true
+        return false
     }
 
-    public getHeaderFieldName():string {
-        return this.headerFieldName
+    public static saveLocalStorage(token:string){
+        JWT.localStorage.set(token)
     }
 
-    public getDecode():any{
-        if(!this.tokenString) return null
-        return jwtDecode(this.tokenString)
+    public static clear(){
+        JWT.localStorage.clear()
+    }
+
+    public static getDecode():any{
+        const token = JWT.getTokenString()
+        if(!token) return null
+        return jwtDecode(token)
     }
 }
 

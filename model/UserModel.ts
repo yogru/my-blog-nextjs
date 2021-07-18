@@ -9,8 +9,8 @@ export default class UserModel {
     public name:string
 
 
-    static createByJwtToken(jwt:JWT):UserModel{
-        const decoded = jwt.getDecode()
+    static createByJwtToken():UserModel{
+        const decoded = JWT.getDecode()
         const ret = new UserModel()
         if(!decoded)return null
 

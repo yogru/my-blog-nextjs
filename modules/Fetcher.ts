@@ -1,112 +1,88 @@
 import fetch from 'isomorphic-unfetch'
-import exp from "constants";
 import JWT from "@/modules/JWT";
 
 
 export interface Fetcher {
-    setJwt(jwt:JWT):void
-    getJwt():JWT
-    post<T,U>(url:string, data:T):Promise<U>
-    get<T,U>(url:string,parameter:any):Promise<U>
-    put<T,U>(url:string,data:T):Promise<U>
-    del<T,U>(url:string,parameter:any):Promise<U>
-}
-
-
-// get도 body에 데이터 보낼 수 있으나 일반적이지 않아서 제외
-type BodyMethodType = "POST" | "PUT"
-type ParamMethodType = "GET" | "DELETE"
-type MethodType = BodyMethodType | ParamMethodType
-
-
-class ReqInit {
-    private requestInit:RequestInit = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }
-
-    public getRequestInit():RequestInit {
-        return this.requestInit
-    }
-
-    public setHeader(headerName:string, value:string):this{
-        this.requestInit.headers[headerName] = value
-        return this
-    }
-
-    public getHeader(headerName):string {
-        return this.requestInit.headers[headerName]
-    }
-
-
-    public setData<T>(data:T):this{
-        this.requestInit.body = JSON.stringify(data)
-        return this
-    }
-
-    public setMethod(methodType:MethodType):this{
-        this.requestInit.method = methodType
-        return this
-    }
-
+    post<T,U>(url:string, data:T ,isSetJwt:boolean ):Promise<U>
+    get<T,U>(url:string, params:any,isSetJwt:boolean):Promise<U>
+    put<T,U>(url:string, data:T, isSetJwt:boolean):Promise<U>
+    del<T,U>(url:string, params:any, isSetJwt:boolean):Promise<U>
 }
 
 
 class FetcherImp implements Fetcher {
 
-    // jwtToken 관련 래핑 클래스 만들까??
-    private jwt:JWT
 
-
-    constructor() {
-        this.jwt = null
+    private setHeaderJwt(r:RequestInit):RequestInit{
+        if(JWT.isValidToken()) {
+            r.headers[JWT.headerFieldName] = JWT.getTokenString()
+        }
+        return r
     }
 
-    public getJwt(): JWT {
-        return this.jwt
-    }
-    public setJwt(jwt: JWT): this {
-        this.jwt = jwt
-        return this
+    private getPostReqInit<T>(data: T, jwt?:boolean):RequestInit{
+        const req = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method:"POST",
+                body:JSON.stringify(data),
+        }
+        return jwt? this.setHeaderJwt(req): req
     }
 
-    public async del<T, U>(url: string, parameter:any): Promise<U> {
+
+    private getPutReqInit<T>(data: T, jwt?:boolean):RequestInit{
+        const req = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method:"PUT",
+            body:JSON.stringify(data),
+        }
+        return jwt? this.setHeaderJwt(req): req
+    }
+
+
+
+    private getGetReqInit(jwt?:boolean):RequestInit{
+        const req = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method:"GET",
+        }
+        return jwt? this.setHeaderJwt(req): req
+    }
+
+    private getDelReqInit(jwt?:boolean):RequestInit{
+        const req = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method:"DELETE",
+        }
+        return jwt? this.setHeaderJwt(req): req
+    }
+
+    public async get<T, U>(_url: string, _params:any, isSetJwt:boolean = true): Promise<U> {
+        let reqInit = this.getGetReqInit(isSetJwt)
+        const params = _params || {}
+        const url = _url+"?"+ new URLSearchParams(params)
+        const ret =  await fetch(url,reqInit)
+        return ret.json()
+    }
+
+    public async post<T, U>(url: string, data: T, isSetJwt:boolean = true): Promise<U> {
+        const ret =  await fetch(url,this.getPostReqInit(data,isSetJwt))
+        return ret.json()
+    }
+
+    public async put<T, U>(url: string, data: T, isSetJwt:boolean = true): Promise<U> {
         return Promise.resolve(undefined);
     }
 
-    public async get<T, U>(url: string, parameter:any): Promise<U> {
-        let reqInit = this.setToken(new ReqInit()).
-                            setMethod("GET").
-                            getRequestInit()
-        const ret =  await fetch(url,reqInit)
-        reqInit = null // gc 최적화
-        return ret.json()
-    }
-
-    private setToken(req:ReqInit):ReqInit{
-        if(this.jwt){
-
-          req.setHeader(
-              this.jwt.getHeaderFieldName(),
-              this.jwt.getTokenString()
-          )
-        }
-        return req
-    }
-
-    public async post<T, U>(url: string, data: T): Promise<U> {
-        let reqInit = this.setToken(new ReqInit()).
-                            setData(data).
-                            setMethod("POST").
-                            getRequestInit()
-
-        const ret =  await fetch(url,reqInit)
-        reqInit = null // gc 최적화
-        return ret.json()
-    }
-
-    public async put<T, U>(url: string, data: T): Promise<U> {
+    public async del<T, U>(url: string, parameter:any, isSetJwt:boolean = true): Promise<U> {
         return Promise.resolve(undefined);
     }
 

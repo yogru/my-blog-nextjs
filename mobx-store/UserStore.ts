@@ -25,21 +25,16 @@ export interface UserStore {
 export default class UserStoreImp implements UserStore{
 
     private user:UserModel | null;
-    private lcs:Localstorage
 
     constructor() {
-        this.lcs = new LocalStorageImp("auth_jwt_key")
-       // const jwt = new JWT(this.lcs.get())
         this.user = null
-        // UserModel.createByJwtToken(jwt)
         makeAutoObservable(this)
     }
 
     public loadLocalStorage(){
-        const jwt = new JWT(this.lcs.get())
-        const user= UserModel.createByJwtToken(jwt)
+        const user= UserModel.createByJwtToken()
+
         if(user){
-            Fetcher.setJwt(jwt)
             this.user = user
         }
     }
@@ -48,21 +43,16 @@ export default class UserStoreImp implements UserStore{
         return toJS(this.user)
     }
 
-
     public async attemptLogin(loginRequest: LoginRequest): Promise<boolean> {
         const res = await UserRepository.login(loginRequest)
-        const jwt = new JWT(res.token)
-        this.user = UserModel.createByJwtToken(jwt)
-        this.lcs.set(res.token)
-        // 이 부분이 좀 많이 구리다...
-        Fetcher.setJwt(jwt)
+        JWT.saveLocalStorage(res.token)
+        this.user = UserModel.createByJwtToken()
         return true
     }
 
     public attemptLogout(): void {
         this.user = null
-        this.lcs.clear()
-        Fetcher.setJwt(null)
+        JWT.clear()
     }
 
     public isLoginUser(): boolean {
