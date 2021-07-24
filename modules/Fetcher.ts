@@ -17,6 +17,7 @@ class FetcherImp implements Fetcher {
         if(JWT.isValidToken()) {
             r.headers[JWT.headerFieldName] = JWT.getTokenString()
         }
+
         return r
     }
 

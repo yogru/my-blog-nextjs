@@ -6,23 +6,16 @@ import BlogMenu from "@/component/blog-header-menu";
 import MainHeaderSide from "./main-header-side"
 import MainSide from "./main-side"
 import PostModel from "@/model/PostModel";
-
-export type LayoutConst= {
-    MainHeaderSideHeight:string
-}
+import layoutValue ,{Layout} from "./layout";
 
 
 export interface Props {
     post: PostModel
 }
 
-const layoutConst:LayoutConst ={
-    MainHeaderSideHeight:"12rem"
-}
-
 
 function PostView(props:Props){
-    const classes = useStyles(layoutConst)
+    const classes = useStyles(layoutValue)
 
     return (
         <Box className={classes.root}>
@@ -33,18 +26,12 @@ function PostView(props:Props){
 
             <Box className={classes.body} >
                 <Box className={classes.bodyColumnOne}>
-                    <MainHeaderSide post={props.post} />
+                    <MainHeaderSide post={props.post} layoutConst={layoutValue} />
                 </Box>
 
                 <Box className={classes.bodyColumnTwo}>
-                    <Box className={classes.leftContainer}>
-                        Left..
-                    </Box>
                     <Box className={classes.mainContainer}>
-                      <MainSide post={props.post} layoutConst={layoutConst} />
-                    </Box>
-                    <Box className={classes.rightContainer}>
-                        right
+                      <MainSide post={props.post} layoutConst={layoutValue} />
                     </Box>
                 </Box>
 
@@ -58,7 +45,6 @@ const useStyles = makeStyles(theme => createStyles({
     root:{
         display:"flex",
         flexDirection:"column",
-        backgroundColor:theme.palette.background.section
     },
     menu:{
         borderBottom:"1px solid rgb(248,249,250)",
@@ -72,28 +58,21 @@ const useStyles = makeStyles(theme => createStyles({
         flexDirection: "column",
         minHeight: `calc(100vh - ${theme.size.blogHeaderMenuHeight})`
     },
-    bodyColumnOne:(l:LayoutConst)=>({
-        minHeight: l.MainHeaderSideHeight,
-        maxHeight: l.MainHeaderSideHeight,
+    bodyColumnOne:(l:Layout)=>({
+        minHeight: l.mainHeaderSideHeight.get(),
+        maxHeight: l.mainHeaderSideHeight.get(),
         borderTop:`1px solid ${theme.borderColor.section}`,
         borderBottom:`1px solid ${theme.borderColor.section}`,
+        backgroundColor:theme.palette.background.section
     }),
     bodyColumnTwo: {
-        display: "flex"
-    },
-    leftContainer:{
-       backgroundColor:"rgb(170,170,170)",
-       width:"10%"
+        display: "flex",
     },
     mainContainer:{
-        backgroundColor:"rgb(130,130,130)",
-        width:"80%",
-    },
-    rightContainer:{
-        backgroundColor:"rgb(170,170,170)",
-        width:"10%"
+        width:"100%",
+        padding:"5%",
+        backgroundColor:theme.palette.background.paper
     }
-
 }))
 
 

@@ -49,7 +49,8 @@ const palette: PaletteOptions ={
     background: {
         default: 'rgb(255,255,255)',
         section: 'rgb(240,240,240)',
-        menu: 'rgb(248,249,250)'
+        menu: 'rgb(248,249,250)',
+        paper:'rgb(248,249,250)'
     }
 }
 

@@ -9,6 +9,29 @@ export default class UserModel {
     public name:string
 
 
+    // public toJson(){
+    //     return {
+    //         id:this.id,
+    //         roles:this.roles,
+    //         email:this.email,
+    //         nickName:this.nickName,
+    //         name:this.name
+    //     }
+    // }
+
+
+
+    static create(id:number,roles:string[],email:string,nickName:string,name:string):UserModel {
+        const ret = new UserModel()
+        ret.id = id
+        ret.roles = [...roles]
+        ret.email = email
+        ret.nickName = nickName
+        ret.name = name
+        return ret
+    }
+
+
     static createByJwtToken():UserModel{
         const decoded = JWT.getDecode()
         const ret = new UserModel()
@@ -25,10 +48,4 @@ export default class UserModel {
     /**
      * 나중에 권한 같은것도 필요할듯?
      */
-
-    // static createByLoginResponse(res:LoginResponse):UserModel{
-    //     let ret = new UserModel()
-    //     ret.email = res.email
-    //     return ret;
-    // }
 }

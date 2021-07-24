@@ -3,6 +3,9 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
 
 
+
+// TOC 나중에 만들자.
+// 애초에 데이터 모델 자체도 안나옴..
 export interface Props {
 
 }

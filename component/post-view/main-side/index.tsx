@@ -5,12 +5,12 @@ import {createStyles} from "@material-ui/core/styles";
 import TocSection from './toc-section'
 import ContentsSection from "./contents-section";
 import FooterSection from "./footer-section";
-import {LayoutConst} from "@/component/post-view";
+import layoutValue, {Layout} from "@/component/post-view/layout";
 import PostModel from "@/model/PostModel";
 
 export interface Props {
     post:PostModel
-    layoutConst:LayoutConst
+    layoutConst:Layout
 }
 
 
@@ -19,9 +19,9 @@ function MainSide(props:Props){
 
     return (
         <Box className={classes.root}>
-            <Box>
-                <TocSection/>
-            </Box>
+            {/*<Box>*/}
+            {/*    <TocSection/>*/}
+            {/*</Box>*/}
 
             <Box>
                 <ContentsSection contents={props.post.body} />
@@ -36,10 +36,11 @@ function MainSide(props:Props){
 }
 
 const useStyles = makeStyles(theme=>createStyles({
-        root:(l:LayoutConst)=>({
+        root:(l:Layout)=>({
             display:"flex",
             flexDirection:"column",
-            minHeight:`calc(100vh - ${l.MainHeaderSideHeight} - ${theme.size.blogHeaderMenuHeight})`
+            backgroundColor:theme.palette.background.paper,
+            minHeight:`calc(100vh - ${l.mainHeaderSideHeight.get()} - ${theme.size.blogHeaderMenuHeight})`
         })
 }))
 
