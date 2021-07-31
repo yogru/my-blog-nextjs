@@ -61,7 +61,7 @@ const theme = createMuiTheme({
         section: "#d6d6d6"
     },
     size:{
-        blogHeaderMenuHeight: "4rem"
+        blogHeaderMenuHeight: "2rem"
     }
 });
 

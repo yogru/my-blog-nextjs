@@ -6,9 +6,14 @@ import {useCallback, useEffect} from "react";
 
 const OBlogHeaderMenuComponent = observer(BlogHeaderMenuComponent)
 
-function BlogHeaderMenuContainer(){
+export interface Props {
+    className?:string
+}
+
+function BlogHeaderMenuContainer(props:Props){
     const rootStore= useRootStore()
     const userStore = rootStore.getUserStore()
+    console.log(userStore)
 
     const onAttemptLogin = useCallback(async(email:string,password:string)=>{
        return userStore.attemptLogin({email,password})
@@ -20,6 +25,7 @@ function BlogHeaderMenuContainer(){
 
     return (
          <OBlogHeaderMenuComponent
+             className={props.className}
               isLogin={userStore.isLoginUser()}
               onAttemptLogout={onAttemptLogout}
               onAttemptLogin={onAttemptLogin}

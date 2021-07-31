@@ -39,15 +39,13 @@ function EditorBar(props:Props){
 
 
     return (
-        <AppBar position="fixed" color="primary" className={classes.appBar}>
+        <AppBar  position="fixed" className={classes.appBar}>
             <Toolbar>
                 <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={onClickBack}>
                     <CallMissedIcon />
                 </IconButton>
                 <div className={classes.grow} />
-                {/*<IconButton color="inherit">*/}
-                {/*    <SearchIcon />*/}
-                {/*</IconButton>*/}
+
                 <IconButton edge="end" color="inherit" onClick={onClickSave}>
                     <CheckIcon />
                 </IconButton>
@@ -71,8 +69,8 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: theme.palette.background.paper,
         },
         appBar: {
-            top: 'auto',
-            bottom: 0,
+           // top: 'auto',
+           // bottom: 0,
         },
         grow: {
             flexGrow: 1,

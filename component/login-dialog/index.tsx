@@ -38,16 +38,17 @@ function LoginComponent(props:Props){
 
 
     return (
-        <Dialog open={props.open}>
+        <Dialog open={props.open} onClose={onClickCloseBtn}>
             <LoginTitle />
             <LoginBody
                 onChangeId={onChangeId}
                 onChangePassword={onChangePassword}
-            />
-            <LoginFooter
                 onClickLoginButton={onClickLoginBtn}
-                onClickCloseButton={onClickCloseBtn}
             />
+            {/*<LoginFooter*/}
+            {/*    onClickLoginButton={onClickLoginBtn}*/}
+            {/*    onClickCloseButton={onClickCloseBtn}*/}
+            {/*/>*/}
         </Dialog>
     )
 

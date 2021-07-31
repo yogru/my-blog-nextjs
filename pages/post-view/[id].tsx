@@ -4,6 +4,7 @@ import PostViewContainer from '@/container/post-view'
 import {useRootStore} from "@/mobx-store/RootStore";
 import PostModel from "@/model/PostModel";
 import UserModel from "@/model/UserModel";
+import useLocalLogin from "@/hooks/useLogin";
 
 export interface Props {
   post?:string
@@ -12,6 +13,8 @@ export interface Props {
 export default function PostViewPage(props:Props){
     console.log(props.post)
     const post = JSON.parse(props.post)
+    const isLocalLogin = useLocalLogin() // 되는지 확인 안함..ㅋㅋ
+    console.log(isLocalLogin)
     return (
         <>
             {

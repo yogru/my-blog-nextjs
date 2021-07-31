@@ -9,7 +9,7 @@ import ThemeIcon, {ThemeType} from '@/component/icon/themeIcon'
 import SearchIcon from '@/component/icon/searchIcon'
 import Profile, {ProfileIconMenuOption} from '@/component/icon/profile'
 import WriteIcon from '@/component/icon/writeIcon'
-import LoginComponent from "@/component/login";
+import LoginComponent from "@/component/login-dialog";
 
 export interface Props {
     isLogin?: boolean,
@@ -93,7 +93,7 @@ function BlogHeaderMenu(props:Props){
             <Box mr={3}>
                 {
                     props.isLogin ? <Profile onChange={onClickProfileMenu}/> :
-                        <Button onClick={onClickLogin}>Login</Button>
+                        <Button className={classes.loginButton}  onClick={onClickLogin}>로그인</Button>
                 }
             </Box>
 
@@ -113,6 +113,10 @@ const useStyles = makeStyles(theme => ({
          maxWidth:"100vw",
          position:props.position
     }),
+    loginButton:{
+        marginTop:"0.6rem"
+    }
+
 }));
 
 BlogHeaderMenu.defaultProps= defaultProps

@@ -19,15 +19,9 @@ function TitleInput(props:Props){
 
     return (
         <Box className={classes.root}>
-            {/*<TextField*/}
-            {/*    id="standard-required"*/}
-            {/*    className = {classes.input}*/}
-            {/*    size={"medium"}*/}
-            {/*    required multiline*/}
-            {/*    placeholder="제목을 입력 해주세요" />*/}
-
-            <textarea className = {classes.input} placeholder='제목을 입력 해주세요' onChange={ onChangeTextArea } />
-
+            <TextField fullWidth id="outlined-basic" label="제목" variant="outlined"
+                       onChange={ onChangeTextArea }
+                       placeholder="제목을 입력 해주세요" />
         </Box>
 
     )
@@ -36,14 +30,12 @@ function TitleInput(props:Props){
 
 const useStyles = makeStyles(theme=>createStyles({
     root:{
-        backgroundColor:theme.palette.background.paper,
-    },
-    input:{
-        width:'100%',
-        border:"none",
-        resize:"none",
-        outline:"none",
-        fontSize:'1.5rem'
+        // backgroundColor:theme.palette.background.paper,
+        marginTop:"5rem",
+        paddingLeft:"2rem",
+        paddingRight:"2rem",
+        paddingTop:'1rem',
+
     }
 }))
 

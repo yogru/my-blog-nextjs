@@ -3,6 +3,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
+import {TextField} from "@material-ui/core";
 
 export interface Props {
     onClickCloseButton?:()=>void
@@ -24,12 +25,17 @@ function LoginFooter(props:Props){
 
     return (
         <MuiDialogActions>
-            <Button autoFocus onClick={onClickCloseButton} color="primary">
-                취소
-            </Button>
-            <Button autoFocus onClick={onClickLoginButton} color="primary">
-               로그인
-            </Button>
+
+            <TextField  fullWidth variant="outlined"  onClick={onClickLoginButton}>
+                로그인
+            </TextField>
+
+            {/*<Button autoFocus onClick={onClickCloseButton} color="primary">*/}
+            {/*    취소*/}
+            {/*</Button>*/}
+            {/*<Button autoFocus onClick={onClickLoginButton} color="primary">*/}
+            {/*   로그인*/}
+            {/*</Button>*/}
         </MuiDialogActions>
     )
 }

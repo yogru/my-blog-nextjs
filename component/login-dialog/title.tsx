@@ -13,10 +13,11 @@ export interface Props {
 
 function LoginTitle(props:Props){
     const classes = useStyles()
-    const titleText = props.titleText || "로그인"
+    const titleText = props.titleText || "환영합니다"
     return (
-        <MuiDialogTitle >
-            <Typography variant="h6">{titleText}</Typography>
+        <MuiDialogTitle>
+            <Typography className={classes.title} variant="h4">{titleText}</Typography>
+
             {props.onClose ? (
                 <IconButton aria-label="close"
                             className={classes.closeButton}
@@ -30,6 +31,14 @@ function LoginTitle(props:Props){
 }
 
 const useStyles = makeStyles(theme=>createStyles({
+    root:{
+
+    },
+    title:{
+        marginTop:"2rem",
+       fontWeight:500,
+       textAlign:"center"
+    },
     closeButton:{
         position: 'absolute',
         right: theme.spacing(1),

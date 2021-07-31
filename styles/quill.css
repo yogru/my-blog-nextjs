@@ -1,8 +1,23 @@
 .ql-editor {
-    min-height: 320px;
+    min-height: calc(100vh - 15rem);
+
+}
+
+.ql-snow.ql-toolbar {
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    background: #eaecec;
+}
+
+.ql-container {
+    /*border: none !important;*/
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+
 }
 
 .ql-container.ql-snow {
-    border: none !important;
+    /*border: none !important;*/
+
 
 }

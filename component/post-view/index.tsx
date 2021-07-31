@@ -1,3 +1,4 @@
+import React from 'react'
 import Box from "@material-ui/core/Box";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
@@ -11,6 +12,7 @@ import layoutValue ,{Layout} from "./layout";
 
 export interface Props {
     post: PostModel
+    BlogMenu: any
 }
 
 
@@ -21,7 +23,7 @@ function PostView(props:Props){
         <Box className={classes.root}>
 
             <Box className={classes.menuContainer}>
-                <BlogMenu  className={classes.menu} position="fixed" />
+                {props.BlogMenu}
             </Box>
 
             <Box className={classes.body} >
@@ -47,7 +49,6 @@ const useStyles = makeStyles(theme => createStyles({
         flexDirection:"column",
     },
     menu:{
-        borderBottom:"1px solid rgb(248,249,250)",
         backgroundColor:theme.palette.background.menu
     },
     menuContainer:{
@@ -70,7 +71,7 @@ const useStyles = makeStyles(theme => createStyles({
     },
     mainContainer:{
         width:"100%",
-        padding:"5%",
+        padding:"5% 15%",
         backgroundColor:theme.palette.background.paper
     }
 }))

@@ -17,7 +17,7 @@ function IndexPage(){
     return (
         <div className={classes.root} >
             <Box>
-                <BlogHeaderMenuContainer/>
+                <BlogHeaderMenuContainer className={classes.blogMenuHeader}/>
             </Box>
 
             <Box>
@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme)=>createStyles({
         minHeight:"100vh",
         backgroundColor:theme.palette.background.section
     },
+    blogMenuHeader:{
+        minHeight: "4rem"
+    }
 }))
 
 

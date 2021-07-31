@@ -5,7 +5,7 @@ import {createStyles} from "@material-ui/core/styles";
 import {observer} from 'mobx-react'
 import { useRouter } from 'next/router'
 
-import Quill from '@/component/editor/quill'
+import Quill from '@/component/post-edit'
 import {useRootStore} from "@/mobx-store/RootStore";
 // import PostStore from "@/mobx-store/PostStore";
 // import PostRepository from "@/repository/PostRepository";
