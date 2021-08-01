@@ -4,7 +4,7 @@ import JWT from "@/modules/JWT";
 
 export interface Fetcher {
     post<T,U>(url:string, data:T ,isSetJwt:boolean ):Promise<U>
-    get<T,U>(url:string, params:any,isSetJwt:boolean):Promise<U>
+    get<T, U>(url: string, params: any, isSetJwt: boolean):Promise<Response>
     put<T,U>(url:string, data:T, isSetJwt:boolean):Promise<U>
     del<T,U>(url:string, params:any, isSetJwt:boolean):Promise<U>
 }
@@ -66,12 +66,11 @@ class FetcherImp implements Fetcher {
         return jwt? this.setHeaderJwt(req): req
     }
 
-    public async get<T, U>(_url: string, _params:any, isSetJwt:boolean = true): Promise<U> {
+    public async get<T, U>(_url: string, params:any = {}, isSetJwt: boolean = true): Promise<Response> {
         let reqInit = this.getGetReqInit(isSetJwt)
-        const params = _params || {}
         const url = _url+"?"+ new URLSearchParams(params)
         const ret =  await fetch(url,reqInit)
-        return ret.json()
+        return ret
     }
 
     public async post<T, U>(url: string, data: T, isSetJwt:boolean = true): Promise<U> {
@@ -83,7 +82,7 @@ class FetcherImp implements Fetcher {
         return Promise.resolve(undefined);
     }
 
-    public async del<T, U>(url: string, parameter:any, isSetJwt:boolean = true): Promise<U> {
+    public async del<T, U>(url: string, parameter:any={}, isSetJwt:boolean = true): Promise<U> {
         return Promise.resolve(undefined);
     }
 

@@ -5,13 +5,14 @@ import Chip from '@material-ui/core/Chip'
 import Avatar from "@material-ui/core/Avatar";
 import cx from 'classnames'
 
-import UserModel from "@/model/UserModel";
+
 import DateWrapperImp from "@/modules/DateWrapper";
+import PostEditor from "@/model/PostEditor";
 
 
 
 export interface Props {
-   user:UserModel
+   user:PostEditor
    createDate:string
 }
 

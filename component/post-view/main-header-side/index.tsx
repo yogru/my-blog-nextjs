@@ -15,7 +15,7 @@ export interface Props {
 
 function MainHeaderSide(props:Props){
     const classes = useStyles(props.layoutConst)
-    const labels = [...props.post.tag, ...props.post.tag,  ...props.post.tag ,  ...props.post.tag]
+    const labels = [...props.post.tags, ...props.post.tags,  ...props.post.tags ,  ...props.post.tags]
     return (
         <Box className={classes.root}>
 
@@ -27,7 +27,6 @@ function MainHeaderSide(props:Props){
             <WriterChip user={props.post.editors[0]} createDate={props.post.createAt} />
         </Box>
     )
-
 }
 
 const useStyles = makeStyles(theme=>createStyles({
