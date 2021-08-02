@@ -27,11 +27,16 @@ function ImgMediaCard(props:Props) {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Lizard
+                        개발 중
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                        across all continents except Antarctica
+                        글 내용 글 내용 글 내용 글 내용 글 내용 글 내용
+                        글 내용 글 내용 글 내용 글 내용 글 내용 글 내용
+                        글 내용 글 내용 글 내용 글 내용 글 내용 글 내용
+                        글 내용 글 내용 글 내용 글 내용 글 내용 글 내용
+                        글 내용 글 내용 글 내용 글 내용 글 내용 글 내용
+
+
                     </Typography>
                 </CardContent>
             </CardActionArea>
