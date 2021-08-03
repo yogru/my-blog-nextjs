@@ -33,12 +33,12 @@ const useStyles = makeStyles((theme)=>({
         color:theme.palette.primary.main,
         display: 'flex',
         flexWrap:"wrap",
-        padding:"1rem",
+       // padding:"1rem",
         flexDirection:"column",
         backgroundColor:theme.palette.background.section
     },
     bodyItem:{
-        margin:"1rem",
+        //marginBottom:"1rem",
         minWidth:"24rem", // 전체적인 크기 조율을 해야 할듯?
         maxHeight:"20rem"
     }
