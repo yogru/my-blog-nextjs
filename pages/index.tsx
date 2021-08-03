@@ -4,7 +4,8 @@ import {createStyles} from "@material-ui/core/styles";
 import {useEffect} from "react";
 
 import BlogHeaderMenuContainer from '@/container/blog-header-menu'
-import HomeBody from '@/container/home-body'
+// import HomeBody from '@/container/home-body' 코드 지울 준비
+import HomePostCardListContainer from "@/container/home-post-card-list";
 import BlogImageBanner from "@/component/banner/banner";
 import {useRootStore} from "@/mobx-store/RootStore";
 import useLocalLogin from "@/hooks/useLogin";
@@ -25,7 +26,7 @@ function IndexPage(){
             </Box>
 
             <Box >
-                <HomeBody  />
+                <HomePostCardListContainer  />
             </Box>
         </div>
     )
