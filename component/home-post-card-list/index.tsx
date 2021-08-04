@@ -2,6 +2,8 @@ import Box from '@material-ui/core/Box'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 
 import HomePostCard from "@/component/home-post-card";
+import PostSummaryModel from "@/model/PostSummaryModel";
+import PostEditor from "@/model/PostEditor";
 
 export interface Props {
 
@@ -13,15 +15,16 @@ export interface Props {
 
 function HomePostCardList(props:Props){
     const classes = useStyles()
+    const postSummaryModel = PostSummaryModel.create(1,"테스트",["1","2","3"], PostEditor.create("kkk","kkk@naver.com","zzzzz"))
 
     return (
         <div className={classes.bodyRoot} >
             <Box className={classes.bodyItem}>
-                <HomePostCard />
+                <HomePostCard postSummaryModel={postSummaryModel} />
             </Box>
 
             <Box className={classes.bodyItem}>
-                <HomePostCard />
+                <HomePostCard postSummaryModel={postSummaryModel} />
             </Box>
         </div>
     )

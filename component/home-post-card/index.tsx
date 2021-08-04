@@ -1,4 +1,4 @@
-import react from 'react'
+import react, {useCallback} from 'react'
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Card from "@material-ui/core/Card"
 import CardContent from '@material-ui/core/CardContent';
@@ -6,38 +6,44 @@ import Box from "@material-ui/core/Box"
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar"
 import Chip from '@material-ui/core/Chip';
+import PostSummaryModel from "@/model/PostSummaryModel";
+
 
 
 export interface Props {
+    postSummaryModel:PostSummaryModel
+    onClickTitle?:(postId:number)=>Promise<void>
 }
 
 
-
-
 export interface CardContentBodyProps {
-    title?:string
-    userName?:string
-    profileImgSrc?:string
+    title:string
+    userName:string
+    onClickTitle:()=>Promise<void>
+    profileImgSrc?:string //짜증나네 이거. 유저에서 자신의 프로필 사진 주소까지??? 음... 유저 설정 페이지 먼저 만들어야하나?
+                          // 그러면 파일 처리도 들어가야하는데. 손 많이 가는데.. 흠...
 }
 
 function CardContentBody(props:CardContentBodyProps){
     const classes = useStyles()
+    const onClickTitle = useCallback(async (e)=>{
+        e.stopPropagation()
+        await props.onClickTitle()
+    },[])
 
     return (
         <Box display="flex" maxWidth="100vw"
-             // bgcolor={"gray"}
              overflow={"hidden"} >
-            <Box  mb={3} width="80vw"
-                 // bgcolor={"yellow"}
-            >
+            <Box  mb={3} width="80vw" onClick={onClickTitle}>
                 <Typography className={classes.textEllipsis} variant={"h4"}>
-                    제목 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+                    {props.title}
+
                 </Typography>
             </Box>
 
             <Box ml={"auto"} display={"flex"} mr={3}>
                 <Box mt={1} mr={1.5}>
-                    <Typography>이름 영역</Typography>
+                    <Typography>{props.userName}</Typography>
                 </Box>
                 <Box>
                     <Avatar  />
@@ -45,7 +51,6 @@ function CardContentBody(props:CardContentBodyProps){
             </Box>
         </Box>
     )
-
 }
 
 
@@ -53,18 +58,24 @@ function CardContentBody(props:CardContentBodyProps){
 
 function HomePostCard(props:Props){
     const classes = useStyles()
-    const tags = ["tag1","tag2","tag3"]
+    const postSummaryModel = props.postSummaryModel
+    const tags = postSummaryModel.tags
+    const { title , mainEditor } = postSummaryModel
+
+    const onClickTitle = useCallback(async ()=>{
+        await props.onClickTitle(postSummaryModel.postId)
+    },[])
 
     return (
         <Card className={classes.root} elevation={0}  >
             <CardContent className={classes.cardContent} >
                 <Box className={classes.cardContentBox}>
                     <Box className={classes.cardContentHead} mb={0.5}  >
-                        <Typography>헤드영역</Typography>
+                        <Typography>{tags[0]}</Typography>
                     </Box>
 
                     <Box className={classes.cardContentBody} mt={1} >
-                        <CardContentBody />
+                        <CardContentBody title={title} userName={mainEditor.nickName} onClickTitle={onClickTitle} />
                     </Box>
 
                     <Box className={classes.cardContentFooter} mb={1} >

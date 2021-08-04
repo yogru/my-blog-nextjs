@@ -1,8 +1,8 @@
 
 export default class PostEditor{
-    name: string
-    email:string
-    nickName:string
+    public name: string
+    public email:string
+    public nickName:string
 
     public static create(name:string, email:string, nickName:string){
         let ret = new PostEditor()

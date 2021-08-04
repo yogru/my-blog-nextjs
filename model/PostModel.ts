@@ -15,7 +15,7 @@ export default class PostModel {
 
 
     public static create(id:number,title:string,body:string,
-                         tag:string[],editors:PostEditor [],createAt:string, updateAt:string){
+                         tag:string[],editors:PostEditor [],createAt:string, updateAt:string):PostModel{
         let ret = new PostModel()
         ret.id = id
         ret.title = title
