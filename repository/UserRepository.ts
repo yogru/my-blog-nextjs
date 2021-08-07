@@ -1,4 +1,5 @@
 import fetcher from '@/modules/Fetcher'
+import UserModel from "@/model/UserModel";
 
 
 export class LoginResponse {
@@ -13,6 +14,7 @@ export class LoginRequest {
 
 export interface UserRepository {
     login(loginReq):Promise<LoginResponse>
+    getUserByEmail(email:string):Promise<UserModel | null>
 }
 
 
@@ -22,6 +24,24 @@ class UserRepositoryImp implements UserRepository {
     public async login(loginReq:LoginRequest): Promise<LoginResponse> {
          return  fetcher.post<LoginRequest,LoginResponse>(this.baseUrl+"/login",loginReq)
     }
+
+    public async getUserByEmail(email:string):Promise<UserModel | null >{
+
+        try {
+            const res = await fetcher.get(this.baseUrl,email);
+            if(res.ok)return null
+            const json = await res.json()
+
+            return UserModel.create(json)
+
+        }catch (e){
+            return  null
+        }
+
+
+      // return Promise.resolve(null)
+    }
+
 }
 
 

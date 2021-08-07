@@ -1,4 +1,4 @@
-import HomePostCardList from "@/component/home-post-card-list";
+import HomePostCardList from "@/component/post-card-list";
 
 export interface Props{}
 

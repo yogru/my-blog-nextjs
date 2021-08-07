@@ -1,28 +1,25 @@
 import GitHubIcon from '@material-ui/icons/GitHub';
 import IconButton from "@material-ui/core/IconButton";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import theme from "../../styles/theme";
 
-interface Props {
-    onClick?:()=>void
-}
+
+import IconComponent,{IconProps} from './icon-component'
+
+export interface Props extends IconProps{}
+
+
 
 function GithubIconComponent(props:Props){
-    const classes = useStyles()
+    const classes = useStyles(props)
     return (
-        <IconButton
-            className={classes.iconRoot}
-            onClick={ ()=>props.onClick?.()}>
+        <IconComponent color={ props.color || "gray"} onClick={ ()=>props.onClick?.()}>
             <GitHubIcon />
-        </IconButton>
+        </IconComponent>
     )
 }
 
 const useStyles = makeStyles((theme)=>({
-    iconRoot:{
-        color:theme.palette.primary.main,
-        marginTop:"0.3rem"
-    },
+
 }))
 
 export default GithubIconComponent

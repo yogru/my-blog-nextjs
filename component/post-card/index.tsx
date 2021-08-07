@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar"
 import Chip from '@material-ui/core/Chip';
 import PostSummaryModel from "@/model/PostSummaryModel";
+import {createStyles} from "@material-ui/core/styles";
 
 
 
@@ -36,7 +37,11 @@ function CardContentBody(props:CardContentBodyProps){
              overflow={"hidden"} >
             <Box  mb={3} width="80vw" onClick={onClickTitle}>
                 <Typography className={classes.textEllipsis} variant={"h4"}>
+                    {props.title}                    {props.title}
                     {props.title}
+                    {props.title}
+                    {props.title}
+
 
                 </Typography>
             </Box>
@@ -67,8 +72,8 @@ function HomePostCard(props:Props){
     },[])
 
     return (
-        <Card className={classes.root} elevation={0}  >
-            <CardContent className={classes.cardContent} >
+        <Box className={classes.root}  >
+            <Box className={classes.cardContent} >
                 <Box className={classes.cardContentBox}>
                     <Box className={classes.cardContentHead} mb={0.5}  >
                         <Typography>{tags[0]}</Typography>
@@ -78,7 +83,7 @@ function HomePostCard(props:Props){
                         <CardContentBody title={title} userName={mainEditor.nickName} onClickTitle={onClickTitle} />
                     </Box>
 
-                    <Box className={classes.cardContentFooter} mb={1} >
+                    <Box className={classes.cardContentFooter} mb={2} >
                         {
                             tags.map((t, idx) =>
                                 <Chip className={classes.tagChip} key={idx} label={"# " + t} variant={"outlined"}/>)
@@ -86,16 +91,16 @@ function HomePostCard(props:Props){
                    </Box>
 
                 </Box>
-            </CardContent>
-        </Card>
+            </Box>
+        </Box>
     )
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme=>createStyles({
     root: {
         width:"100%",
         borderRadius:'0px',
-        borderBottom:"1px solid #d6d6d6"
+        borderBottom:`1px solid ${theme.borderColor.section}`
     },
     cardContent:{
         width:"100%",
@@ -134,7 +139,7 @@ const useStyles = makeStyles({
         textOverflow:"ellipsis",
         whiteSpace:"nowrap"
     }
-});
+}));
 
 export default HomePostCard
 

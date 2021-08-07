@@ -40,20 +40,6 @@ export const getServerSideProps: GetServerSideProps = async (
         props.post = JSON.stringify(postModel)
     }
 
-    // const userModel = UserModel.create(1,[],
-    //                                   "rsef013@gmail.com",
-    //                                   "브로니","권영복")
-    // let post = {
-    //     id: Number(id),
-    //     title:"테스트 객체",
-    //     body:"<pre>강조인가 이거??</pre>",
-    //     editors:[userModel],
-    //     tag:["tag1","tag2","tag3"],
-    //     createAt:new Date(),
-    //     updateAt:new Date()
-    // }
-    // post = null
-
     return {
         props,
     }
