@@ -37,6 +37,8 @@ class PostRepositoryImp implements PostRepository{
         }
     }
 
+
+
 }
 
 const ret:PostRepository = new PostRepositoryImp()

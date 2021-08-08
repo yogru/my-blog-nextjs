@@ -26,20 +26,14 @@ class UserRepositoryImp implements UserRepository {
     }
 
     public async getUserByEmail(email:string):Promise<UserModel | null >{
-
         try {
-            const res = await fetcher.get(this.baseUrl,email);
-            if(res.ok)return null
+            const res = await fetcher.get(this.baseUrl,{"email":email});
+            if(!res.ok)return null
             const json = await res.json()
-
-            return UserModel.create(json)
-
+            return UserModel.createByJson(json);
         }catch (e){
             return  null
         }
-
-
-      // return Promise.resolve(null)
     }
 
 }

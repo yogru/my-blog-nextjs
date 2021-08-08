@@ -13,7 +13,6 @@ export interface Props {
 function BlogHeaderMenuContainer(props:Props){
     const rootStore= useRootStore()
     const userStore = rootStore.getUserStore()
-    console.log(userStore)
 
     const onAttemptLogin = useCallback(async(email:string,password:string)=>{
        return userStore.attemptLogin({email,password})

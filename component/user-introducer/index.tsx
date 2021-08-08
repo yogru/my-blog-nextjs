@@ -31,7 +31,7 @@ function UserIntroducer(props:Props){
                     </Box>
 
                     <Box className={classes.textSectionSecond}>
-                        <Typography variant="subtitle1">{props.user?.greeting}</Typography>
+                        <Typography variant="subtitle1">{props.user?.selfIntroductions}</Typography>
                     </Box>
                 </Box>
             </Box>

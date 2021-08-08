@@ -1,39 +1,40 @@
-import {LoginResponse} from "@/repository/UserRepository";
+import {IsEmail, IsArray, Length, MaxLength} from "class-validator"
 import JWT from "@/modules/JWT";
 
 export default class UserModel {
+
+    @IsArray()
     public roles:string []
+
+    @IsEmail()
     public email:string
+
+    @Length(1,30)
     public nickName:string | null
+
+    @Length(2,30)
     public name:string
+
+    @MaxLength(255)
     public selfIntroductions:string
+
+    @MaxLength(255)
     public homepageUrl:string
+
+    @MaxLength(255)
     public githubUrl:string
 
 
-    static create(roles:string[],email:string,nickName:string,name:string,
-                  selfIntroductions:string,homepageUrl:string,
-                  githuburl:string):UserModel {
-        const ret = new UserModel()
-        ret.roles = [...roles]
-        ret.email = email
-        ret.nickName = nickName
-        ret.name = name
-        ret.selfIntroductions = selfIntroductions
-        ret.homepageUrl = homepageUrl
-        ret.githubUrl = githuburl
+    static createByJson(json:any):UserModel{
+        let ret:UserModel = json.data;
+        ret.selfIntroductions ||=`안녕하세요! ${ret.nickName} 입니다.`
         return ret
     }
-
-
-
-
 
     static createByJwtToken():UserModel{
         const decoded = JWT.getDecode()
         const ret = new UserModel()
         if(!decoded)return null
-
 
         ret.name= decoded.name
         ret.email= decoded.email
@@ -41,11 +42,8 @@ export default class UserModel {
         ret.nickName = decoded.nickName
         ret.selfIntroductions = decoded.selfIntroductions
         ret.homepageUrl = decoded.homepageUrl
-        ret.githubUrl = decoded.githuburl
+        ret.githubUrl = decoded.githubUrl
         return ret
     }
 
-    /**
-     * 나중에 권한 같은것도 필요할듯?
-     */
 }
