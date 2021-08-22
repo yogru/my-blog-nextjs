@@ -8,11 +8,12 @@ import Avatar from "@material-ui/core/Avatar"
 import Chip from '@material-ui/core/Chip';
 import PostSummaryModel from "@/model/PostSummaryModel";
 import {createStyles} from "@material-ui/core/styles";
+import PostModel from "@/model/PostModel";
 
 
 
 export interface Props {
-    postSummaryModel:PostSummaryModel
+    post:PostModel
     onClickTitle?:(postId:number)=>Promise<void>
 }
 
@@ -63,12 +64,12 @@ function CardContentBody(props:CardContentBodyProps){
 
 function HomePostCard(props:Props){
     const classes = useStyles()
-    const postSummaryModel = props.postSummaryModel
-    const tags = postSummaryModel.tags
-    const { title , mainEditor } = postSummaryModel
+    const post = props.post
+    const tags = post.tags
+    const { title , editor } = post
 
     const onClickTitle = useCallback(async ()=>{
-        await props.onClickTitle?.(postSummaryModel.postId)
+        await props.onClickTitle?.(post.id)
     },[])
 
     return (
@@ -80,7 +81,7 @@ function HomePostCard(props:Props){
                     </Box>
 
                     <Box className={classes.cardContentBody} mt={1} >
-                        <CardContentBody title={title} userName={mainEditor.nickName} onClickTitle={onClickTitle} />
+                        <CardContentBody title={title} userName={editor.nickName} onClickTitle={onClickTitle} />
                     </Box>
 
                     <Box className={classes.cardContentFooter} mb={2} >

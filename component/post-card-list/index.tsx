@@ -5,9 +5,10 @@ import HomePostCard from "@/component/post-card";
 import PostSummaryModel from "@/model/PostSummaryModel";
 import PostEditor from "@/model/PostEditor";
 import useEndScroll from '@/hooks/useEndScroll'
+import PostModel from "@/model/PostModel";
 
 export interface Props {
-    posts: PostSummaryModel []
+    posts: PostModel []
     onEndScroll?:()=>Promise<void>
 }
 
@@ -16,10 +17,9 @@ export interface Props {
 // 무한 스크롤에 물리면 시간 엄청 오래 걸릴 수도 있을것 같은데.. 흠...
 
 function HomePostCardList(props:Props){
-    const classes = useStyles()
+     const classes = useStyles()
 
-    const text_p = PostSummaryModel.create(1,"테스트",["1","2","3"], PostEditor.create("kkk","kkk@naver.com","zzzzz"))
-    const modelList = props.posts || [text_p,text_p,text_p,text_p,text_p,text_p,text_p]
+     const modelList = props.posts || []
     /**
      *  데이터 없을 때 처리 해야 된다. 빈화면 띄우기.. 귀찮으니까 지금은 패스..
      */
@@ -29,13 +29,12 @@ function HomePostCardList(props:Props){
         await props.onEndScroll?.()
     })
 
-
     return (
         <div className={classes.bodyRoot} >
             {
                 modelList.map((post,idx)=>
                     <Box key={idx} className={classes.bodyItem}>
-                        <HomePostCard postSummaryModel={post} />
+                        <HomePostCard post={post} />
                     </Box>
                 )
             }

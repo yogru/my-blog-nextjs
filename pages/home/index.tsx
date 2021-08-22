@@ -10,19 +10,39 @@ import BlogImageBanner from "@/component/banner/banner";
 import {useRootStore} from "@/mobx-store/RootStore";
 import useLocalLogin from "@/hooks/useLogin";
 import postRepository from "@/repository/PostRepository";
+import {GetServerSideProps, GetServerSidePropsContext} from "next";
+import PageResponse from "@/model/PageResponse";
+import PostModel from "@/model/PostModel";
 
 
-function IndexPage(){
+interface Props {
+    pageResponse?:PageResponse<PostModel>
+}
+
+
+
+export const getServerSideProps: GetServerSideProps = async (
+    context: GetServerSidePropsContext
+) => {
+    const pageResponse = await postRepository.search();
+    let props:Props = {}
+    props.pageResponse ??= pageResponse
+
+    console.log("으응??",pageResponse)
+
+    return {
+        props,
+    }
+}
+
+
+
+function IndexPage(props:Props){
     const classes = useStyles()
     const isLocalLogin = useLocalLogin() // 되는지 확인 안함..ㅋㅋ
-    console.log(isLocalLogin)
+    const posts = props.pageResponse?.contents || []
 
-
-    useEffect(()=>{
-        postRepository.search(null,null).catch(e=>console.log(e))
-    },[])
-
-
+    console.log(posts,props.pageResponse)
 
     return (
         <div className={classes.root} >
@@ -35,7 +55,7 @@ function IndexPage(){
             </Box>
 
             <Box >
-                <HomePostCardListContainer  />
+                <HomePostCardListContainer posts={posts} />
             </Box>
         </div>
     )
