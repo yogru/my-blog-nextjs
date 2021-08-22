@@ -14,7 +14,7 @@ export interface Props {
     BlogMenu:any
     user:UserModel
     userTagsList:string []
-    postList:PostSummaryModel []
+    postList: PostSummaryModel []
     onEndScroll:()=>Promise<void>
     onChangeTag:(tag:string)=>void
 }

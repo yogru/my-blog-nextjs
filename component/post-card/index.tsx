@@ -68,7 +68,7 @@ function HomePostCard(props:Props){
     const { title , mainEditor } = postSummaryModel
 
     const onClickTitle = useCallback(async ()=>{
-        await props.onClickTitle(postSummaryModel.postId)
+        await props.onClickTitle?.(postSummaryModel.postId)
     },[])
 
     return (
