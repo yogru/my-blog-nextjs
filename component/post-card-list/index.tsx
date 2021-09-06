@@ -10,6 +10,7 @@ import PostModel from "@/model/PostModel";
 export interface Props {
     posts: PostModel []
     onEndScroll?:()=>Promise<void>
+    onClickPostCard?:(id:number)=>Promise<void>
 }
 
 
@@ -34,7 +35,8 @@ function HomePostCardList(props:Props){
             {
                 modelList.map((post,idx)=>
                     <Box key={idx} className={classes.bodyItem}>
-                        <HomePostCard post={post} />
+                        <HomePostCard onClickTitle={async (e)=>{
+                            props.onClickPostCard?.(e)}} post={post} />
                     </Box>
                 )
             }

@@ -34,16 +34,10 @@ function CardContentBody(props:CardContentBodyProps){
     },[])
 
     return (
-        <Box display="flex" maxWidth="100vw"
-             overflow={"hidden"} >
-            <Box  mb={3} width="80vw" onClick={onClickTitle}>
+        <Box display="flex" maxWidth="100vw" overflow={"hidden"} >
+            <Box  mb={3} width="80vw" className={classes.hoverClick} onClick={onClickTitle}>
                 <Typography className={classes.textEllipsis} variant={"h4"}>
-                    {props.title}                    {props.title}
                     {props.title}
-                    {props.title}
-                    {props.title}
-
-
                 </Typography>
             </Box>
 
@@ -102,6 +96,11 @@ const useStyles = makeStyles(theme=>createStyles({
         width:"100%",
         borderRadius:'0px',
         borderBottom:`1px solid ${theme.borderColor.section}`
+    },
+    hoverClick:{
+        "&:hover":{
+            cursor:"pointer"
+        }
     },
     cardContent:{
         width:"100%",

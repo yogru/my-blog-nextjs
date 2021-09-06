@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router'
+
 import HomePostCardList from "@/component/post-card-list";
 import PostModel from "@/model/PostModel";
 
@@ -6,8 +8,13 @@ export interface Props{
 }
 
 function HomePostCardListContainer(props:Props){
+    const router = useRouter()
+
+    async function onClickByPostId(id_:number){
+        await router.push(`/post-view/${id_}`)
+    }
     return (
-        <HomePostCardList  posts={props.posts}/>
+        <HomePostCardList onClickPostCard={onClickByPostId} posts={props.posts}/>
     )
 }
 
