@@ -15,7 +15,7 @@ export interface Props {
 
 function MainHeaderSide(props:Props){
     const classes = useStyles(props.layoutConst)
-    const labels = [...props.post.tags, ...props.post.tags,  ...props.post.tags ,  ...props.post.tags]
+    const labels = [...props.post.tags]
     return (
         <Box className={classes.root}>
 
@@ -24,7 +24,7 @@ function MainHeaderSide(props:Props){
             </Typography>
 
             <TagChip labels={labels}/>
-            <WriterChip user={props.post.editors[0]} createDate={props.post.createAt} />
+            <WriterChip user={props.post.editor} createDate={props.post.createAt} />
         </Box>
     )
 }

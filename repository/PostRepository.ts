@@ -32,10 +32,11 @@ class PostRepositoryImp implements PostRepository{
        if(!Number.isInteger(id))return null
         try {
             const post = await fetch.get(this.baseUrl + `/${id}`)
+            console.log("잠시만..?",post)
             if(!post.ok) return null
             const json:any =  await post.json()
-            const postEditors = json.editors.map((e)=>PostEditor.create(e.name,e.email,e.nickName))
-            return PostModel.create(id,json.title,json.body,json.tags,postEditors,json.createAt,json.updateAt)
+            const editor = PostEditor.create(json['name'],json['email'],json['nickName'])
+            return PostModel.create(id,json.title,json.body,json.tags,editor,json.createAt,json.updateAt)
         }catch (e){
            return null
         }

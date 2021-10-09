@@ -1,13 +1,10 @@
 import Box from '@material-ui/core/Box'
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
-import {useEffect} from "react";
 
 import BlogHeaderMenuContainer from '@/container/blog-header-menu'
-// import HomeBody from '@/container/home-body' 코드 지울 준비
 import HomePostCardListContainer from "@/container/home-post-card-list";
 import BlogImageBanner from "@/component/banner/banner";
-import {useRootStore} from "@/mobx-store/RootStore";
 import useLocalLogin from "@/hooks/useLogin";
 import postRepository from "@/repository/PostRepository";
 import {GetServerSideProps, GetServerSidePropsContext} from "next";
@@ -28,8 +25,6 @@ export const getServerSideProps: GetServerSideProps = async (
     let props:Props = {}
     props.pageResponse ??= pageResponse
 
-    console.log("으응??",pageResponse)
-
     return {
         props,
     }
@@ -41,8 +36,6 @@ function IndexPage(props:Props){
     const classes = useStyles()
     const isLocalLogin = useLocalLogin() // 되는지 확인 안함..ㅋㅋ
     const posts = props.pageResponse?.contents || []
-
-    console.log(posts,props.pageResponse)
 
     return (
         <div className={classes.root} >

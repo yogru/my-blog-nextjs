@@ -13,10 +13,9 @@ export interface Props {
 }
 
 export default function PostViewPage(props:Props){
-    console.log(props.post)
     const post = JSON.parse(props.post)
-    const isLocalLogin = useLocalLogin() // 되는지 확인 안함..ㅋㅋ
-    console.log(isLocalLogin)
+    const isLocalLogin = useLocalLogin()
+
     return (
         <>
             {
@@ -35,6 +34,8 @@ export const getServerSideProps: GetServerSideProps = async (
 
     const id =  context.params['id']
     const postModel = await postRepository.findById(Number(id))
+    console.log(id, postModel)
+
     let props:Props = {post:null}
     if(postModel){
         props.post = JSON.stringify(postModel)
