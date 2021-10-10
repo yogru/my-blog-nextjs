@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx"
 
-import PostModel from "@/model/PostModel";
+import {Post} from "@/model/Post";
 import RootStore from "@/mobx-store/RootStore";
 import postRepository from "@/repository/PostRepository";
 import PostSearchCondition from '@/model/PostSearchCondition'
@@ -8,8 +8,8 @@ import {PageRequest,PageResponse} from "@/model/Paging";
 
 
 export default interface PostListStore {
-    initialize(loadedPosts:PostModel [], perPage:number, page:number)
-    getList():PostModel[]
+    initialize(loadedPosts:Post [], perPage:number, page:number)
+    getList():Post[]
     nextPage():Promise<void>
     setPerPage(perPage:number):void
     getCurrentPage():number
@@ -18,7 +18,7 @@ export default interface PostListStore {
 
 export class PostListStoreImp implements PostListStore {
     private readonly rootStore:RootStore
-    private posts: PostModel []
+    private posts: Post []
     private perPage:number
     private page:number
 
@@ -31,13 +31,13 @@ export class PostListStoreImp implements PostListStore {
         makeAutoObservable(this)
     }
 
-    public initialize(loadedPosts:PostModel [], perPage:number, page:number ){
+    public initialize(loadedPosts:Post [], perPage:number, page:number ){
         this.posts = loadedPosts
         this.perPage = perPage
         this.page = page
     }
 
-    public getList(): PostModel[] {
+    public getList(): Post[] {
         return this.posts
     }
 

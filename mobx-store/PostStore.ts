@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx"
 
-import PostModel from "@/model/PostModel";
+import {Post} from "@/model/Post";
 import PostRepository from "@/repository/PostRepository";
 import RootStore from "@/mobx-store/RootStore";
 
@@ -18,7 +18,10 @@ export class PostStoreImp  implements PostStore{
 
     public async submit(title:string, body:string){
         const userModel =  this.rootStore.getUserStore().getUser()
-        const postModel =  PostModel.createByView(title,body,[],userModel)
+        const postModel = new Post({
+            title,body,tags:[], editor:userModel
+        })
+        // PostModel.createByView(title,body,[],userModel)
         return  PostRepository.createPost(postModel)
     }
 
