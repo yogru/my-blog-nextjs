@@ -2,6 +2,10 @@ import { makeAutoObservable } from "mobx"
 
 import PostModel from "@/model/PostModel";
 import RootStore from "@/mobx-store/RootStore";
+import postRepository from "@/repository/PostRepository";
+import PostSearchCondition from '@/model/PostSearchCondition'
+import {PageRequest,PageResponse} from "@/model/Paging";
+
 
 export default interface PostListStore {
     initialize(loadedPosts:PostModel [], perPage:number, page:number)
@@ -23,7 +27,7 @@ export class PostListStoreImp implements PostListStore {
         this.rootStore = rootStore
         this.posts = []
         this.perPage = 10
-        this.page = 1
+        this.page = 0
         makeAutoObservable(this)
     }
 
@@ -37,7 +41,10 @@ export class PostListStoreImp implements PostListStore {
         return this.posts
     }
 
-    public nextPage(): Promise<void> {
+    public async nextPage(): Promise<void> {
+        this.page += 1
+        const ret = await postRepository.search(null,new PageRequest(this.page,this.perPage+10))
+        console.log(ret,this.page)
         return Promise.resolve()
     }
 
