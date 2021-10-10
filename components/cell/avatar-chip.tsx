@@ -5,32 +5,13 @@ import Chip from '@material-ui/core/Chip'
 import Avatar from "@material-ui/core/Avatar";
 import cx from 'classnames'
 
-
 import DateWrapperImp from "@/modules/DateWrapper";
 import {Editor} from "@/model/Post";
 
-
-
 export interface Props {
-   user:Editor
-   createDate:string
+    user:Editor
+    createDate:string
 }
-
-function WriterChip(props:Props){
-    const classes = useStyles()
-    const dataWrapper = new DateWrapperImp(props.createDate)
-    // const createAt = new Date(props.createDate).toLocaleString()
-
-
-    return(
-        <Box className={classes.root }>
-            <Chip className={cx(classes.outlined, classes.label)}
-                  avatar={<Avatar>xx</Avatar>}
-                  label={props.user.nickName +" "+dataWrapper.getDateString("yy/MM/dd")+" 작성" } variant={"outlined"} />
-        </Box>
-    )
-}
-
 
 const useStyles= makeStyles((theme)=>createStyles({
     root:{
@@ -49,5 +30,18 @@ const useStyles= makeStyles((theme)=>createStyles({
 }))
 
 
+export default function AvatarChip(props:Props){
+    const classes = useStyles()
+    const dataWrapper = new DateWrapperImp(props.createDate)
+    // const createAt = new Date(props.createDate).toLocaleString()
 
-export default WriterChip
+
+    return(
+        <Box className={classes.root }>
+            <Chip className={cx(classes.outlined, classes.label)}
+                  avatar={<Avatar>xx</Avatar>}
+                  label={props.user.nickName +" "+dataWrapper.getDateString("yy/MM/dd")+" 작성" } variant={"outlined"} />
+        </Box>
+    )
+}
+

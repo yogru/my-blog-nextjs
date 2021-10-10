@@ -1,9 +1,6 @@
 import {GetServerSidePropsContext, GetServerSideProps} from "next"
 
-import PostViewContainer from '@/container/post-view'
-import {useRootStore} from "@/mobx-store/RootStore";
-import {Post} from "@/model/Post";
-import UserModel from "@/model/UserModel";
+import PostView from '@/components/organ/post-view'
 import useLocalLogin from "@/hooks/useLogin";
 import postRepository from '@/repository/PostRepository'
 
@@ -19,7 +16,7 @@ export default function PostViewPage(props:Props){
     return (
         <>
             {
-                props.post ?  <PostViewContainer post={post} />:
+                props.post ?  <PostView post={post} />:
                     "해당 포스트 없음 ㅋㅋ"
             }
         </>

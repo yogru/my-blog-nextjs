@@ -5,16 +5,20 @@ import {createStyles} from "@material-ui/core/styles";
 import {observer} from 'mobx-react'
 import { useRouter } from 'next/router'
 
-import Quill from '@/component/post-edit'
+import PostEdit from "@/components/tissue/post-edit";
 import {useRootStore} from "@/mobx-store/RootStore";
-// import PostStore from "@/mobx-store/PostStore";
-// import PostRepository from "@/repository/PostRepository";
 
-export interface Props {}
+export interface Props {
 
-const OQuill = observer(Quill)
+}
 
-function EditPost(props:Props){
+const useStyles = makeStyles((theme=>createStyles({
+    root:{
+        backGroundColor:theme.palette.background.paper
+    }
+})))
+
+const OPostEdit = observer((props:Props)=>{
     const classes = useStyles()
     const router = useRouter()
     const rootStore = useRootStore()
@@ -33,29 +37,24 @@ function EditPost(props:Props){
     },[])
 
     const onSave = useCallback( async (title:string, body:string)=>{
-            await postStore.submit(title,body)
+        await postStore.submit(title,body)
     },[])
 
     const onBack = useCallback(()=>{
         router.back()
     },[])
 
+
     return (
         <>
             {
                 loading ? <p> loading...</p> :
                     <Box className={classes.root}>
-                        <OQuill onSave={onSave} onBack={onBack} />
+                        <PostEdit onSave={onSave} onBack={onBack} />
                     </Box>
             }
         </>
     )
-}
+})
 
-const useStyles = makeStyles((theme=>createStyles({
-    root:{
-        backGroundColor:theme.palette.background.paper
-    }
-})))
-
-export default observer(EditPost)
+export default OPostEdit

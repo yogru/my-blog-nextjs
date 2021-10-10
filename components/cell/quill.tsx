@@ -31,7 +31,13 @@ const modules = {
     }
 }
 
-function Quill(props:Props) {
+const useStyles = makeStyles((theme)=>createStyles({
+    root:{
+        // backgroundColor:theme.palette.background.paper
+    }
+}));
+
+export default function Quill(props:Props) {
     const [text, setText] = React.useState<string>('')
     const classes = useStyles()
     const ReactQuill = typeof window === 'object' ? require("react-quill") : () => false;
@@ -47,20 +53,13 @@ function Quill(props:Props) {
             <ReactQuill
                 style={{minHeight:'500px' }}
                 theme={"snow"}
-                        value={text}
-                        onChange={onChange}
-                        formats={formats}
-                        modules={modules}
+                value={text}
+                onChange={onChange}
+                formats={formats}
+                modules={modules}
+
+
             />
         </Box>
     )
 }
-
-const useStyles = makeStyles((theme)=>createStyles({
-    root:{
-        // backgroundColor:theme.palette.background.paper
-    }
-}));
-
-
-export default Quill
