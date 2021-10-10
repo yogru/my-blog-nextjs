@@ -3,17 +3,18 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
 
 import BlogHeaderMenuContainer from '@/container/blog-header-menu'
-import HomePostCardListContainer from "@/container/home-post-card-list";
-import BlogImageBanner from "@/component/banner/banner";
+import PostCardList from "@/components/organ/post-card-list";
+
+import BlogImageBanner from "@/components/cell/banner";
 import useLocalLogin from "@/hooks/useLogin";
 import postRepository from "@/repository/PostRepository";
 import {GetServerSideProps, GetServerSidePropsContext} from "next";
-import PageResponse from "@/model/PageResponse";
-import PostModel from "@/model/PostModel";
+import {PageResponse} from '@/model/Paging'
+import {Post} from "@/model/Post";
 
 
 interface Props {
-    pageResponse?:PageResponse<PostModel>
+    pageResponse?:PageResponse<Post>
 }
 
 
@@ -48,7 +49,7 @@ function IndexPage(props:Props){
             </Box>
 
             <Box >
-                <HomePostCardListContainer posts={posts} />
+                <PostCardList posts={posts} />
             </Box>
         </div>
     )

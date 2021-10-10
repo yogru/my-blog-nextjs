@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 export interface Props {
 
 }
-
+// 이거 안씀..
 
 function ImgMediaCard(props:Props) {
     const classes = useStyles();
