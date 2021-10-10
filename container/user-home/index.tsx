@@ -15,7 +15,6 @@ function UserHome(props:Props){
 
     const rootStore = useRootStore()
 
-
     return (
         <UserHomeComponents
             user={props.user}

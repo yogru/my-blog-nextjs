@@ -1,10 +1,10 @@
 import PostViewComponent from '@/component/post-view'
-import PostModel from "@/model/PostModel";
+import {Post} from "@/model/Post";
 
 import BlogHeaderMenuContainer from "@/container/blog-header-menu";
 
 export interface Props {
-  post:PostModel
+  post:Post
 }
 
 function PostView(props:Props){

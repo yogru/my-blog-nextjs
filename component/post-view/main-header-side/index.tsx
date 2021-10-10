@@ -1,4 +1,4 @@
-import PostModel from "@/model/PostModel";
+import {Post} from "@/model/Post";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -9,7 +9,7 @@ import TagChip from "./tag-chip";
 import WriterChip from "./writer-chip";
 
 export interface Props {
-    post:PostModel
+    post:Post
     layoutConst:Layout
 }
 

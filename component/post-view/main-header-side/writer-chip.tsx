@@ -7,12 +7,12 @@ import cx from 'classnames'
 
 
 import DateWrapperImp from "@/modules/DateWrapper";
-import PostEditor from "@/model/PostEditor";
+import {Editor} from "@/model/Post";
 
 
 
 export interface Props {
-   user:PostEditor
+   user:Editor
    createDate:string
 }
 

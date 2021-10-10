@@ -6,10 +6,10 @@ import TocSection from './toc-section'
 import ContentsSection from "./contents-section";
 import FooterSection from "./footer-section";
 import layoutValue, {Layout} from "@/component/post-view/layout";
-import PostModel from "@/model/PostModel";
+import {Post} from "@/model/Post";
 
 export interface Props {
-    post:PostModel
+    post:Post
     layoutConst:Layout
 }
 

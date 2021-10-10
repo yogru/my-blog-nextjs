@@ -6,12 +6,12 @@ import {createStyles} from "@material-ui/core/styles";
 import BlogMenu from "@/component/blog-header-menu";
 import MainHeaderSide from "./main-header-side"
 import MainSide from "./main-side"
-import PostModel from "@/model/PostModel";
+import {Post} from "@/model/Post";
 import layoutValue ,{Layout} from "./layout";
 
 
 export interface Props {
-    post: PostModel
+    post: Post
     BlogMenu: any
 }
 

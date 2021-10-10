@@ -1,19 +1,15 @@
-import react, {useCallback} from 'react'
+import {useCallback} from 'react'
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import Card from "@material-ui/core/Card"
-import CardContent from '@material-ui/core/CardContent';
 import Box from "@material-ui/core/Box"
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar"
 import Chip from '@material-ui/core/Chip';
-import PostSummaryModel from "@/model/PostSummaryModel";
 import {createStyles} from "@material-ui/core/styles";
-import PostModel from "@/model/PostModel";
-
+import {Post} from "@/model/Post";
 
 
 export interface Props {
-    post:PostModel
+    post:Post
     onClickTitle?:(postId:number)=>Promise<void>
 }
 

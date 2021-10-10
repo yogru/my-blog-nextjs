@@ -8,13 +8,13 @@ import {Divider} from "@material-ui/core";
 import ChipList from "@/component/chip-list";
 import PostCardList from "@/component/post-card-list"
 import UserModel from "@/model/UserModel";
-import PostSummaryModel from "@/model/PostSummaryModel";
+import {PostSummary} from "@/model/Post";
 
 export interface Props {
     BlogMenu:any
     user:UserModel
-    userTagsList:string []
-    postList: PostSummaryModel []
+    userTagsList?:string []
+    postList?: PostSummary []
     onEndScroll:()=>Promise<void>
     onChangeTag:(tag:string)=>void
 }

@@ -3,11 +3,11 @@ import { useRouter } from 'next/router'
 import {observer} from 'mobx-react'
 
 import HomePostCardList from "@/component/post-card-list";
-import PostModel from "@/model/PostModel";
+import {Post} from "@/model/Post";
 import {useRootStore} from "@/mobx-store/RootStore"
 
 export interface Props{
-    posts: PostModel []
+    posts: Post []
 }
 
 

@@ -17,8 +17,6 @@ export interface Props {
 function PostCreator(props:Props){
     const classes = useStyles()
 
-
-
     const [bodyText , setBodyText] = useState<string>()
     const [titleText, setTitleText] = useState<string>()
 
