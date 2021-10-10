@@ -1,3 +1,5 @@
+import {is} from "@babel/types";
+
 export class PageRequest {
 
     public size:number
@@ -16,4 +18,11 @@ export  class PageResponse<T>{
     pageRequest:PageRequest
     totalPage:number
     isNextPage:boolean
+
+    constructor(c:T [], pageRequest:PageRequest,totalPage:number,isNextPage:boolean) {
+        this.contents = c
+        this.pageRequest = pageRequest
+        this.totalPage = totalPage
+        this.isNextPage = isNextPage
+    }
 }

@@ -21,6 +21,8 @@ export class PostListStoreImp implements PostListStore {
     private posts: Post []
     private perPage:number
     private page:number
+    private isNextPage:boolean
+    private isLoading:boolean
 
 
     constructor(rootStore:RootStore) {
@@ -35,6 +37,8 @@ export class PostListStoreImp implements PostListStore {
         this.posts = loadedPosts
         this.perPage = perPage
         this.page = page
+        this.isNextPage = true
+        this.isLoading = false
     }
 
     public getList(): Post[] {
@@ -42,10 +46,24 @@ export class PostListStoreImp implements PostListStore {
     }
 
     public async nextPage(): Promise<void> {
-        this.page += 1
-        const ret = await postRepository.search(null,new PageRequest(this.page,this.perPage+10))
-        console.log(ret,this.page)
-        return Promise.resolve()
+        console.log("뭐지??",this.page, this.isNextPage)
+        if(!this.isNextPage)return
+        if(this.isLoading)return
+        console.log("한번만..",this.page, this.isNextPage)
+        this.isLoading = true
+
+        const json = await postRepository.search(null,new PageRequest(this.page+1,this.perPage))
+        console.log(json)
+        const contents = json['contents'].map((obj)=>new Post(obj))
+        // const totalPage = parseInt(json['totalPage'],10)
+        const isNextPage = json['next']
+        const retPageReq = new PageRequest(parseInt(json['currentPage'],10),
+            parseInt(json['perPage'],10))
+
+        this.posts = [...this.posts,...contents]
+        this.page = retPageReq.page
+        this.isNextPage = isNextPage
+        this.isLoading = false
     }
 
     public setPerPage(perPage:number) {

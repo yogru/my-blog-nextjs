@@ -6,7 +6,7 @@ import {PageRequest, PageResponse} from '@/model/Paging'
 export interface PostRepository {
     createPost:(postModel:Post)=>Promise<boolean>
     findById:(id:number)=>Promise<Post | null>
-    search:(condition?:PostSearchCondition, pageRequest?:PageRequest)=> Promise< PageResponse<Post> >
+    search:(condition?:PostSearchCondition, pageRequest?:PageRequest)=> Promise<any>
 }
 
 
@@ -39,7 +39,7 @@ class PostRepositoryImp implements PostRepository{
     }
 
 
-    public async search(condition?:PostSearchCondition ,pageRequest?:PageRequest): Promise<PageResponse<Post>>{
+    public async search(condition?:PostSearchCondition ,pageRequest?:PageRequest): Promise<any>{
        try {
             // parameter 는 나중으로 일단..
             const res = await fetch.get(this.baseUrl+"/list",{
@@ -47,8 +47,8 @@ class PostRepositoryImp implements PostRepository{
                 ...pageRequest
             })
             if(!res.ok)return null
-           // const json:any = await res.json();
-           return res.json()
+           const json = await res.json();
+           return json
        }catch (e){
            console.log(e," error..")
            return null
