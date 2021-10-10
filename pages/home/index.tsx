@@ -1,14 +1,13 @@
 import Box from '@material-ui/core/Box'
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles} from "@material-ui/core/styles";
+import {GetServerSideProps, GetServerSidePropsContext} from "next";
 
-import BlogHeaderMenuContainer from '@/container/blog-header-menu'
+import MenuHeader from '@/components/organ/menu-header'
 import PostCardList from "@/components/organ/post-card-list";
-
 import BlogImageBanner from "@/components/cell/banner";
 import useLocalLogin from "@/hooks/useLogin";
 import postRepository from "@/repository/PostRepository";
-import {GetServerSideProps, GetServerSidePropsContext} from "next";
 import {PageResponse} from '@/model/Paging'
 import {Post} from "@/model/Post";
 
@@ -41,7 +40,7 @@ function IndexPage(props:Props){
     return (
         <div className={classes.root} >
             <Box>
-                <BlogHeaderMenuContainer className={classes.blogMenuHeader}/>
+                <MenuHeader className={classes.blogMenuHeader}/>
             </Box>
 
             <Box>

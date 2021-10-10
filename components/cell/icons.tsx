@@ -51,7 +51,7 @@ function IconComponent(props:Props){
 }
 
 
-export function GithubIcon(props:Props){
+export function GithubIcon(props:IconProps){
     return (
         <IconComponent color={ props.color || "gray"} onClick={ ()=>props.onClick?.()}>
             <MuiGitHubIcon />
@@ -60,7 +60,7 @@ export function GithubIcon(props:Props){
 }
 
 
-export function LogoIcon(props:Props){
+export function LogoIcon(props:IconProps){
     const color= props.color || "black"
     return (
         <IconComponent color={color} onClick={()=>props.onClick?.()} >
@@ -70,7 +70,7 @@ export function LogoIcon(props:Props){
 }
 
 
-export function MessageIcon(props:Props){
+export function MessageIcon(props:IconProps){
     return (
         <IconComponent color={ props.color || "gray"} onClick={ ()=>props.onClick?.()}>
             <MuiMessageIcon />
@@ -79,7 +79,7 @@ export function MessageIcon(props:Props){
 }
 
 
-export function SearchIconComponent(props:Props){
+export function SearchIcon(props:IconProps){
     return (
         <IconComponent color={props.color || 'gray'} onClick={ ()=>props.onClick?.()} >
             <MuiSearchIcon />
@@ -88,7 +88,7 @@ export function SearchIconComponent(props:Props){
 }
 
 export type ThemeType = "light" | "dark"
-export interface ThemeIconProps extends Props{
+export interface ThemeIconProps extends IconProps{
     onChange?:(themeType:ThemeType)=>void
 }
 
@@ -110,7 +110,7 @@ export function ThemeIcon(props:ThemeIconProps){
 }
 
 
-export function WriteIcon(props:Props){
+export function WriteIcon(props:IconProps){
     return (
         <IconComponent color={props.color || 'gray'} onClick={ ()=>props.onClick?.()} >
             <MuiCreateIcon />

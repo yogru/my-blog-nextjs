@@ -4,12 +4,9 @@ import Box from '@material-ui/core/Box'
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Button from "@material-ui/core/Button";
 
-import LogoIcon from '@/component/icon/logo-icon'
-import ThemeIcon, {ThemeType} from '@/component/icon/theme-icon'
-import SearchIcon from '@/component/icon/search-icon'
-import Profile, {ProfileIconMenuOption} from '@/component/icon/profile'
-import WriteIcon from '@/component/icon/write-icon'
+import {LogoIcon,ThemeIcon,SearchIcon,WriteIcon ,ThemeType} from '@/components/cell/icons'
 import LoginComponent from "@/component/login-dialog";
+import Profile, {ProfileIconMenuOption} from '@/component/icon/profile'
 
 export interface Props {
     isLogin?: boolean,

@@ -2,7 +2,7 @@ import {GetServerSidePropsContext, GetServerSideProps} from "next"
 
 import PostViewContainer from '@/container/post-view'
 import {useRootStore} from "@/mobx-store/RootStore";
-import PostModel from "@/model/PostModel";
+import {Post} from "@/model/Post";
 import UserModel from "@/model/UserModel";
 import useLocalLogin from "@/hooks/useLogin";
 import postRepository from '@/repository/PostRepository'
