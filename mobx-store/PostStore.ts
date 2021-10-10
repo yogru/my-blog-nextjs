@@ -1,25 +1,23 @@
-import React from 'react'
 import { makeAutoObservable } from "mobx"
 
 import PostModel from "@/model/PostModel";
 import PostRepository from "@/repository/PostRepository";
-import {UserStore} from "@/mobx-store/UserStore";
+import RootStore from "@/mobx-store/RootStore";
 
-export interface PostStore {
-    // submit: (dto:PostModel) => Promise<boolean>
+export default interface PostStore {
     submit: (title:string, body:string) => Promise<boolean>
 }
 
 export class PostStoreImp  implements PostStore{
-    private readonly userStore:UserStore
+    private readonly rootStore:RootStore
 
-    constructor(userStore:UserStore) {
+    constructor(rootStore:RootStore) {
         makeAutoObservable(this)
-        this.userStore = userStore
+        this.rootStore = rootStore
     }
 
     public async submit(title:string, body:string){
-        const userModel =  this.userStore.getUser()
+        const userModel =  this.rootStore.getUserStore().getUser()
         const postModel =  PostModel.createByView(title,body,[],userModel)
         return  PostRepository.createPost(postModel)
     }

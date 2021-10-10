@@ -6,27 +6,23 @@ import UserModel from "@/model/UserModel";
 import Fetcher from '@/modules/Fetcher'
 import JWT from "@/modules/JWT";
 import LocalStorageImp, {Localstorage} from "@/modules/Localstorage";
+import RootStore from "@/mobx-store/RootStore";
 
-
-export interface UserStore {
-
-
+export default interface UserStore {
     attemptLogin(loginRequest:LoginRequest):Promise<boolean>
-
     attemptLogout():void
-
     loadLocalStorage():void
-
     isLoginUser():boolean
-
     getUser():UserModel
 }
 
-export default class UserStoreImp implements UserStore{
+export class UserStoreImp implements UserStore{
 
     private user:UserModel | null;
+    private readonly rootStore:RootStore
 
-    constructor() {
+    constructor(rootStore:RootStore) {
+        this.rootStore = rootStore
         this.user = null
         makeAutoObservable(this)
     }

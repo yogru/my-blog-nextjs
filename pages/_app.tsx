@@ -7,7 +7,7 @@ import "@/styles/quill.css"
 
 
 import theme from '../styles/theme';
-import RootStoreImp , {RootStore} from "@/mobx-store/RootStore";
+import RootStore , {RootStoreImp} from "@/mobx-store/RootStore";
 
 interface Props {
     pageProps : any
@@ -15,8 +15,6 @@ interface Props {
 }
 
 const rootStore = new RootStoreImp()
-
-
 
 export default function MyApp(props:Props) {
   const { Component, pageProps } = props;

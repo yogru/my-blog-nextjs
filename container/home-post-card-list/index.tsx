@@ -13,8 +13,15 @@ function HomePostCardListContainer(props:Props){
     async function onClickByPostId(id_:number){
         await router.push(`/post-view/${id_}`)
     }
+
+    async function onEndScroll(){
+        console.log("zzz")
+    }
+
     return (
-        <HomePostCardList onClickPostCard={onClickByPostId} posts={props.posts}/>
+        <HomePostCardList onClickPostCard={onClickByPostId}
+                          onEndScroll={onEndScroll}
+                          posts={props.posts}/>
     )
 }
 
