@@ -25,17 +25,15 @@ class PostRepositoryImp implements PostRepository{
         catch(e) {
             return false
         }
-       return true
    }
 
     public async findById(id: number): Promise<PostModel | null> {
        if(!Number.isInteger(id))return null
         try {
             const post = await fetch.get(this.baseUrl + `/${id}`)
-            console.log("잠시만..?",post)
             if(!post.ok) return null
             const json:any =  await post.json()
-            const editor = PostEditor.create(json['name'],json['email'],json['nickName'])
+            const editor = PostEditor.create(json['editor']['name'],json['editor']['email'],json['editor']['nickName'])
             return PostModel.create(id,json.title,json.body,json.tags,editor,json.createAt,json.updateAt)
         }catch (e){
            return null
@@ -48,15 +46,13 @@ class PostRepositoryImp implements PostRepository{
             // parameter 는 나중으로 일단..
             const res = await fetch.get(this.baseUrl+"/list")
             if(!res.ok)return null
-           const json:any = await res.json();
-           console.log(json)
-           return json
+           // const json:any = await res.json();
+           return res.json()
        }catch (e){
            console.log(e," error..")
            return null
        }
     }
-
 }
 
 const ret:PostRepository = new PostRepositoryImp()

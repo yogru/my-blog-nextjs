@@ -19,13 +19,13 @@ export interface Props {
 function WriterChip(props:Props){
     const classes = useStyles()
     const dataWrapper = new DateWrapperImp(props.createDate)
+    // const createAt = new Date(props.createDate).toLocaleString()
 
-    const createAt = new Date(props.createDate).toLocaleString()
-    // 아바타 url 관련 관리 해줘야하겠네..
+
     return(
         <Box className={classes.root }>
             <Chip className={cx(classes.outlined, classes.label)}
-                  avatar={<Avatar>영복</Avatar>}
+                  avatar={<Avatar>xx</Avatar>}
                   label={props.user.nickName +" "+dataWrapper.getDateString("yy/MM/dd")+" 작성" } variant={"outlined"} />
         </Box>
     )
