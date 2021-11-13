@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx"
+import { makeAutoObservable, runInAction } from "mobx"
 
 import {Post} from "@/model/Post";
 import RootStore from "@/mobx-store/RootStore";
@@ -60,10 +60,13 @@ export class PostListStoreImp implements PostListStore {
         const retPageReq = new PageRequest(parseInt(json['currentPage'],10),
             parseInt(json['perPage'],10))
 
-        this.posts = [...this.posts,...contents]
-        this.page = retPageReq.page
-        this.isNextPage = isNextPage
-        this.isLoading = false
+        runInAction(()=>{
+            this.posts = [...this.posts,...contents]
+            this.page = retPageReq.page
+            this.isNextPage = isNextPage
+            this.isLoading = false
+        })
+
     }
 
     public setPerPage(perPage:number) {

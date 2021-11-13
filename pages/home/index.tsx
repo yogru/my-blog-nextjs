@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (
 ) => {
     const pageResponse = await postRepository.search();
     let props:Props = {}
-    console.log("에에엥?",pageResponse)
+    // console.log("에에엥?",pageResponse)
     props.pageResponse ??= pageResponse
 
     return {

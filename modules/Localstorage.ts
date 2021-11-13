@@ -18,13 +18,24 @@ export default class LocalStorageImp implements Localstorage{
        this.key = key
     }
 
-    public get(): string {
+    public get(): string | null {
 
-        if(typeof window !== 'undefined' ){
-            return window.localStorage.getItem(this.key)
+        try {
+            const val =  window.localStorage.getItem(this.key)
+            if(val === "undefined")
+                return null
+            return val
+        }catch (e){
+            return null
         }
-        return null
-
+        //
+        // if (typeof window !== 'undefined') {
+        //     const val =  window.localStorage.getItem(this.key)
+        //     console.log("value.11..",val)
+        //     if(typeof val !== 'undefined')return val
+        //     return null
+        // }
+        // return null
     }
 
     public clear(){
