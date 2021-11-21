@@ -19,7 +19,6 @@ export default class LocalStorageImp implements Localstorage{
     }
 
     public get(): string | null {
-
         try {
             const val =  window.localStorage.getItem(this.key)
             if(val === "undefined")
@@ -28,23 +27,14 @@ export default class LocalStorageImp implements Localstorage{
         }catch (e){
             return null
         }
-        //
-        // if (typeof window !== 'undefined') {
-        //     const val =  window.localStorage.getItem(this.key)
-        //     console.log("value.11..",val)
-        //     if(typeof val !== 'undefined')return val
-        //     return null
-        // }
-        // return null
     }
 
     public clear(){
-        this.set("")
+        this.set("undefined")
     }
 
     public set(data:string):string {
         const old =  this.get()
-
         if(typeof window!=='undefined'){
             window.localStorage.setItem(this.key,data)
         }

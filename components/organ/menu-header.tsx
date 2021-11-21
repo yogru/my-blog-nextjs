@@ -21,12 +21,17 @@ const OMenuHeader = observer((props:Props)=>{
         userStore.attemptLogout()
     },[])
 
+    const onClickWriteButton = useCallback(()=>{
+        console.log("write...zz")
+    },[])
+
     return (
         <MenuHeader
             className={props.className}
             isLogin={userStore.isLoginUser()}
             onAttemptLogout={onAttemptLogout}
             onAttemptLogin={onAttemptLogin}
+            onClickWriteButton={onClickWriteButton}
         />
     )
 })

@@ -6,8 +6,8 @@ export default class JWT {
     public static readonly headerFieldName:string = "X-AUTH-TOKEN"
     private static readonly localStorage:Localstorage = new LocalStorageImp(JWT.headerFieldName)
 
-    public static getTokenString():string {
-        return JWT.localStorage.get()
+    public static getTokenString(): string | null {
+       return  JWT.localStorage.get()
     }
 
     public static isValidToken():boolean {
@@ -27,7 +27,6 @@ export default class JWT {
     public static getDecode():any{
         const token = JWT.localStorage.get()
         if(token === null ){
-            console.log('get decode')
             return null
         }
         return jwtDecode(token)

@@ -16,10 +16,13 @@ class PostRepositoryImp implements PostRepository{
 
    public async createPost(postModel: Post): Promise<boolean> {
         try {
+            console.log("create post...")
             const res =  await fetch.post(this.baseUrl,postModel)
+            console.log("res... post...",postModel)
             return true
         }
         catch(e) {
+            console.log(e,"error post...")
             return false
         }
    }
