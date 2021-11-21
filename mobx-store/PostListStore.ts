@@ -46,7 +46,7 @@ export class PostListStoreImp implements PostListStore {
     }
 
     public async nextPage(): Promise<void> {
-        console.log("뭐지??",this.page, this.isNextPage)
+        console.log("뭐지??",this.page, this.isNextPage, this.isLoading)
         if(!this.isNextPage)return
         if(this.isLoading)return
         console.log("한번만..",this.page, this.isNextPage)
