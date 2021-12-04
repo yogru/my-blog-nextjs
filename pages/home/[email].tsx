@@ -1,6 +1,6 @@
 import {GetServerSideProps, GetServerSidePropsContext} from "next";
 
-import UserHome from '@/container/user-home'
+// import UserHome from '@/container/user-home'
 import userRepository from "@/repository/UserRepository";
 import ValidatorWrapper from "@/modules/ValidatorWrapper";
 import UserModel from "@/model/UserModel";

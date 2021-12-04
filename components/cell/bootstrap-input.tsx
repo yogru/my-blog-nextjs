@@ -19,7 +19,7 @@ const BootstrapInput = withStyles((theme: Theme) =>
             backgroundColor: theme.palette.common.white,
             border: '1px solid #ced4da',
             fontSize: 16,
-            width: 'auto',
+            // width: 'auto',
             padding: '10px 12px',
             transition: theme.transitions.create(['border-color', 'box-shadow']),
             // Use the system font instead of the default Roboto font.

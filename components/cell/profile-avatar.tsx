@@ -13,9 +13,7 @@ export default function ProfileAvatar(props:Props){
     const classes = useStyles(props)
 
     return (
-        <Box>
             <Avatar className={classes.avatar} alt={"profile_avatar"} src="/images/profile.jpg" />
-        </Box>
     )
 
 }
